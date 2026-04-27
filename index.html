@@ -21,415 +21,111 @@
       --sombra: 0 18px 45px rgba(143, 95, 153, 0.16);
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, sans-serif; }
+    body { min-height: 100vh; background: radial-gradient(circle at top left, rgba(248, 200, 220, 0.55), transparent 32%), radial-gradient(circle at top right, rgba(200, 162, 200, 0.55), transparent 35%), linear-gradient(135deg, #fff8fb, #f7efff); color: var(--texto); position: relative; }
+    
+    .app { width: min(1280px, 94%); margin: 0 auto; padding: 28px 0 50px; }
+    header { display: grid; grid-template-columns: 1.4fr 0.8fr; gap: 18px; align-items: stretch; margin-bottom: 24px; }
+    .hero, .balance-card, .panel, .table-card { background: rgba(255, 255, 255, 0.8); border: 1px solid rgba(234, 220, 242, 0.9); border-radius: 30px; box-shadow: var(--sombra); backdrop-filter: blur(10px); }
+    .hero { padding: 30px; position: relative; overflow: hidden; }
+    .hero::after { content: "✦"; position: absolute; right: 28px; top: 20px; font-size: 70px; color: rgba(200, 162, 200, 0.22); }
+    .badge { display: inline-flex; align-items: center; gap: 8px; padding: 9px 15px; border-radius: 999px; background: var(--rosa-suave); color: var(--morado-oscuro); font-size: 14px; font-weight: 700; margin-bottom: 16px; justify-content: space-between; }
+    #cloudStatus { font-size: 12px; color: var(--gris); font-weight: bold; background: white; padding: 4px 10px; border-radius: 20px; border: 1px solid var(--borde); }
+    h1 { font-size: clamp(30px, 4vw, 52px); line-height: 1.02; color: var(--morado-oscuro); margin-bottom: 12px; }
+    .hero p { max-width: 760px; color: var(--gris); line-height: 1.7; font-size: 16px; }
+    .balance-card { padding: 26px; display: flex; flex-direction: column; justify-content: space-between; background: linear-gradient(160deg, var(--morado), var(--rosa)); color: white; min-height: 220px; }
+    .balance-card small { text-transform: uppercase; letter-spacing: 1.5px; opacity: 0.86; font-weight: 700; }
+    .balance-card h2 { font-size: 42px; margin: 10px 0; }
+    .mini-metrics { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .mini-metric { background: rgba(255, 255, 255, 0.24); border-radius: 20px; padding: 14px; }
+    .mini-metric span { display: block; font-size: 13px; opacity: 0.88; margin-bottom: 4px; }
+    
+    nav { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 22px; }
+    .tab-btn, button, .ghost-btn { border: 0; cursor: pointer; border-radius: 999px; padding: 11px 17px; font-weight: 800; transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease; }
+    .tab-btn { background: white; color: var(--morado-oscuro); border: 1px solid var(--borde); }
+    .tab-btn.active, .primary-btn { background: linear-gradient(135deg, var(--morado), var(--rosa)); color: white; box-shadow: 0 10px 24px rgba(143, 95, 153, 0.22); }
+    button:hover, .tab-btn:hover { transform: translateY(-2px); }
+
+    /* BOTÓN DE CONFIGURACIÓN FLOTANTE */
+    .settings-btn {
+      position: fixed;
+      top: 24px;
+      right: 24px;
+      width: 50px;
+      height: 50px;
       padding: 0;
-      font-family: "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-    }
-
-    body {
-      min-height: 100vh;
-      background:
-        radial-gradient(circle at top left, rgba(248, 200, 220, 0.55), transparent 32%),
-        radial-gradient(circle at top right, rgba(200, 162, 200, 0.55), transparent 35%),
-        linear-gradient(135deg, #fff8fb, #f7efff);
-      color: var(--texto);
-    }
-
-    .app {
-      width: min(1280px, 94%);
-      margin: 0 auto;
-      padding: 28px 0 50px;
-    }
-
-    header {
-      display: grid;
-      grid-template-columns: 1.4fr 0.8fr;
-      gap: 18px;
-      align-items: stretch;
-      margin-bottom: 24px;
-    }
-
-    .hero, .balance-card, .panel, .table-card {
-      background: rgba(255, 255, 255, 0.8);
-      border: 1px solid rgba(234, 220, 242, 0.9);
-      border-radius: 30px;
-      box-shadow: var(--sombra);
-      backdrop-filter: blur(10px);
-    }
-
-    .hero {
-      padding: 30px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero::after {
-      content: "✦";
-      position: absolute;
-      right: 28px;
-      top: 20px;
-      font-size: 70px;
-      color: rgba(200, 162, 200, 0.22);
-    }
-
-    .badge {
-      display: inline-flex;
+      display: flex;
+      justify-content: center;
       align-items: center;
-      gap: 8px;
-      padding: 9px 15px;
-      border-radius: 999px;
-      background: var(--rosa-suave);
-      color: var(--morado-oscuro);
-      font-size: 14px;
-      font-weight: 700;
-      margin-bottom: 16px;
-    }
-
-    h1 {
-      font-size: clamp(30px, 4vw, 52px);
-      line-height: 1.02;
-      color: var(--morado-oscuro);
-      margin-bottom: 12px;
-    }
-
-    .hero p {
-      max-width: 760px;
-      color: var(--gris);
-      line-height: 1.7;
-      font-size: 16px;
-    }
-
-    .balance-card {
-      padding: 26px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      background: linear-gradient(160deg, var(--morado), var(--rosa));
-      color: white;
-      min-height: 220px;
-    }
-
-    .balance-card small {
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      opacity: 0.86;
-      font-weight: 700;
-    }
-
-    .balance-card h2 {
-      font-size: 42px;
-      margin: 10px 0;
-    }
-
-    .mini-metrics {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-    }
-
-    .mini-metric {
-      background: rgba(255, 255, 255, 0.24);
-      border-radius: 20px;
-      padding: 14px;
-    }
-
-    .mini-metric span {
-      display: block;
-      font-size: 13px;
-      opacity: 0.88;
-      margin-bottom: 4px;
-    }
-
-    nav {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-bottom: 22px;
-    }
-
-    .tab-btn, button, .ghost-btn {
-      border: 0;
-      cursor: pointer;
-      border-radius: 999px;
-      padding: 11px 17px;
-      font-weight: 800;
-      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
-    }
-
-    .tab-btn {
-      background: white;
-      color: var(--morado-oscuro);
-      border: 1px solid var(--borde);
-    }
-
-    .tab-btn.active, .primary-btn {
-      background: linear-gradient(135deg, var(--morado), var(--rosa));
-      color: white;
-      box-shadow: 0 10px 24px rgba(143, 95, 153, 0.22);
-    }
-
-    button:hover, .tab-btn:hover {
-      transform: translateY(-2px);
-    }
-
-    .section {
-      display: none;
-    }
-
-    .section.active {
-      display: block;
-      animation: fadeIn 0.25s ease;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(8px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: 0.85fr 1.15fr;
-      gap: 20px;
-      align-items: start;
-    }
-
-    .panel, .table-card {
-      padding: 24px;
-    }
-
-    .panel-title {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 18px;
-    }
-
-    .panel-title h2 {
-      color: var(--morado-oscuro);
       font-size: 24px;
+      z-index: 1000;
+      box-shadow: 0 8px 25px rgba(143, 95, 153, 0.2);
+    }
+    .settings-btn:hover {
+      transform: translateY(-2px) rotate(45deg);
     }
 
-    .panel-title p {
-      color: var(--gris);
-      font-size: 14px;
-      margin-top: 4px;
-    }
-
-    form {
-      display: grid;
-      gap: 13px;
-    }
-
-    label {
-      font-size: 13px;
-      font-weight: 800;
-      color: var(--morado-oscuro);
-      margin-bottom: -5px;
-    }
-
-    input, select, textarea {
-      width: 100%;
-      border: 1px solid var(--borde);
-      background: rgba(255, 255, 255, 0.86);
-      border-radius: 18px;
-      padding: 13px 15px;
-      color: var(--texto);
-      outline: none;
-      font-size: 15px;
-    }
-
-    input:focus, select:focus, textarea:focus {
-      border-color: var(--morado);
-      box-shadow: 0 0 0 4px rgba(200, 162, 200, 0.18);
-    }
-
-    .row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-    }
-
-    .actions {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      align-items: center;
-    }
-
-    .secondary-btn {
-      background: var(--morado-suave);
-      color: var(--morado-oscuro);
-    }
-
-    .danger-btn {
-      background: #ffe8ef;
-      color: #b04462;
-    }
-
-    .edit-btn {
-      background: #efe1ff;
-      color: var(--morado-oscuro);
-      padding: 8px 12px;
-      font-size: 13px;
-    }
-
-    .delete-btn {
-      background: #ffe2ec;
-      color: #b04462;
-      padding: 8px 12px;
-      font-size: 13px;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-    }
-
-    th, td {
-      text-align: left;
-      padding: 14px 10px;
-      border-bottom: 1px solid var(--borde);
-      vertical-align: middle;
-      font-size: 14px;
-    }
-
-    th {
-      color: var(--morado-oscuro);
-      font-size: 13px;
-      text-transform: uppercase;
-      letter-spacing: 0.7px;
-    }
-
-    .pill {
-      display: inline-flex;
-      align-items: center;
-      padding: 6px 10px;
-      border-radius: 999px;
-      font-weight: 800;
-      font-size: 12px;
-    }
-
+    .section { display: none; }
+    .section.active { display: block; animation: fadeIn 0.25s ease; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+    .grid { display: grid; grid-template-columns: 0.85fr 1.15fr; gap: 20px; align-items: start; }
+    .panel, .table-card { padding: 24px; }
+    .panel-title { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 18px; }
+    .panel-title h2 { color: var(--morado-oscuro); font-size: 24px; }
+    .panel-title p { color: var(--gris); font-size: 14px; margin-top: 4px; }
+    form { display: grid; gap: 13px; }
+    label { font-size: 13px; font-weight: 800; color: var(--morado-oscuro); margin-bottom: -5px; }
+    input, select, textarea { width: 100%; border: 1px solid var(--borde); background: rgba(255, 255, 255, 0.86); border-radius: 18px; padding: 13px 15px; color: var(--texto); outline: none; font-size: 15px; }
+    input:focus, select:focus, textarea:focus { border-color: var(--morado); box-shadow: 0 0 0 4px rgba(200, 162, 200, 0.18); }
+    .row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .actions { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+    .secondary-btn { background: var(--morado-suave); color: var(--morado-oscuro); }
+    .danger-btn { background: #ffe8ef; color: #b04462; }
+    .edit-btn { background: #efe1ff; color: var(--morado-oscuro); padding: 8px 12px; font-size: 13px; }
+    .delete-btn { background: #ffe2ec; color: #b04462; padding: 8px 12px; font-size: 13px; }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { text-align: left; padding: 14px 10px; border-bottom: 1px solid var(--borde); vertical-align: middle; font-size: 14px; }
+    th { color: var(--morado-oscuro); font-size: 13px; text-transform: uppercase; letter-spacing: 0.7px; }
+    .pill { display: inline-flex; align-items: center; padding: 6px 10px; border-radius: 999px; font-weight: 800; font-size: 12px; }
     .income { background: #e8fff2; color: #32845a; }
     .expense { background: #fff0f5; color: #c25a78; }
-
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 14px;
-      margin-bottom: 20px;
-    }
-
-    .stat-card {
-      background: rgba(255, 255, 255, 0.84);
-      border: 1px solid var(--borde);
-      border-radius: 24px;
-      padding: 20px;
-      box-shadow: 0 12px 30px rgba(143, 95, 153, 0.1);
-    }
-
-    .stat-card span {
-      display: block;
-      color: var(--gris);
-      font-size: 13px;
-      font-weight: 800;
-      margin-bottom: 8px;
-    }
-
-    .stat-card strong {
-      font-size: 25px;
-      color: var(--morado-oscuro);
-    }
-
-    .charts {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
-    }
-
-    .chart-box {
-      background: rgba(255, 255, 255, 0.84);
-      border: 1px solid var(--borde);
-      border-radius: 28px;
-      padding: 22px;
-      box-shadow: var(--sombra);
-      min-height: 330px;
-    }
-
-    .chart-box h3 {
-      color: var(--morado-oscuro);
-      margin-bottom: 14px;
-    }
-
-    .list {
-      display: grid;
-      gap: 10px;
-    }
-
-    .list-item {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 12px;
-      padding: 13px 14px;
-      border: 1px solid var(--borde);
-      background: rgba(255, 255, 255, 0.72);
-      border-radius: 18px;
-    }
-
-    .list-item strong {
-      color: var(--morado-oscuro);
-    }
-
-    .filters {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 10px;
-      margin-bottom: 14px;
-    }
-
-    .empty {
-      text-align: center;
-      padding: 26px;
-      color: var(--gris);
-      background: var(--rosa-suave);
-      border-radius: 20px;
-      margin-top: 10px;
-    }
-
-    footer {
-      margin-top: 28px;
-      text-align: center;
-      color: var(--gris);
-      font-size: 14px;
-    }
-
-    @media (max-width: 980px) {
-      header, .grid, .charts {
-        grid-template-columns: 1fr;
-      }
-      .cards, .filters {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-
-    @media (max-width: 640px) {
-      .app { width: 94%; padding-top: 16px; }
-      .hero, .balance-card, .panel, .table-card { border-radius: 22px; padding: 18px; }
-      .cards, .filters, .row { grid-template-columns: 1fr; }
-      table { min-width: 760px; }
-      .table-scroll { overflow-x: auto; }
-      .balance-card h2 { font-size: 34px; }
+    .cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 20px; }
+    .stat-card { background: rgba(255, 255, 255, 0.84); border: 1px solid var(--borde); border-radius: 24px; padding: 20px; box-shadow: 0 12px 30px rgba(143, 95, 153, 0.1); }
+    .stat-card span { display: block; color: var(--gris); font-size: 13px; font-weight: 800; margin-bottom: 8px; }
+    .stat-card strong { font-size: 25px; color: var(--morado-oscuro); }
+    .charts { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .chart-box { background: rgba(255, 255, 255, 0.84); border: 1px solid var(--borde); border-radius: 28px; padding: 22px; box-shadow: var(--sombra); min-height: 330px; }
+    .chart-box h3 { color: var(--morado-oscuro); margin-bottom: 14px; }
+    .list { display: grid; gap: 10px; }
+    .list-item { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 13px 14px; border: 1px solid var(--borde); background: rgba(255, 255, 255, 0.72); border-radius: 18px; }
+    .list-item strong { color: var(--morado-oscuro); }
+    .filters { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 14px; }
+    .empty { text-align: center; padding: 26px; color: var(--gris); background: var(--rosa-suave); border-radius: 20px; margin-top: 10px; }
+    footer { margin-top: 28px; text-align: center; color: var(--gris); font-size: 14px; }
+    
+    @media (max-width: 980px) { header, .grid, .charts { grid-template-columns: 1fr; } .cards, .filters { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 640px) { 
+      .app { width: 94%; padding-top: 16px; } 
+      .hero, .balance-card, .panel, .table-card { border-radius: 22px; padding: 18px; } 
+      .cards, .filters, .row { grid-template-columns: 1fr; } 
+      table { min-width: 760px; } .table-scroll { overflow-x: auto; } 
+      .balance-card h2 { font-size: 34px; } 
+      .settings-btn { top: 16px; right: 16px; width: 42px; height: 42px; font-size: 20px; }
     }
   </style>
 </head>
 <body>
+
+  <!-- BOTÓN CONFIGURACIÓN ESQUINA SUPERIOR DERECHA -->
+  <button class="tab-btn settings-btn" data-section="configuracion" title="Configuración">⚙️</button>
+
   <div class="app">
     <header>
       <section class="hero">
-        <div class="badge">♡ Control financiero femenino</div>
+        <div class="badge">
+          <span>♡ Control financiero</span>
+          <span id="cloudStatus">☁️ Modo Local</span>
+        </div>
         <h1>Finanzas Dalia &lt;3</h1>
         <p>Administra ingresos, gastos, categorías y lugares de consumo desde una app online sencilla y elegante.</p>
       </section>
@@ -460,6 +156,36 @@
     </nav>
 
     <main>
+      <!-- SECCIÓN CONFIGURACIÓN (NUBE GITHUB) -->
+      <section id="configuracion" class="section">
+        <div class="grid" style="grid-template-columns: 1fr; max-width: 600px; margin: 0 auto;">
+          <div class="panel">
+            <div class="panel-title">
+              <div>
+                <h2>Configuración</h2>
+                <p>Conecta tu app con GitHub para guardar tus datos online de forma automática.</p>
+              </div>
+            </div>
+            <form id="cloudForm">
+              <label>GitHub Personal Access Token (PAT)</label>
+              <input id="githubToken" type="password" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx" />
+              
+              <label>Gist ID</label>
+              <input id="gistId" type="text" placeholder="Ej. 8a3f8c... (código del Gist)" />
+
+              <div class="actions" style="margin-top: 10px;">
+                <button type="submit" class="primary-btn">Guardar Credenciales</button>
+                <button type="button" id="forceSyncBtn" class="secondary-btn">Forzar sincronización</button>
+              </div>
+              <p style="font-size: 13px; color: var(--gris); margin-top: 15px; line-height: 1.5;">
+                <strong>Nota:</strong> Los datos se guardarán localmente en tu navegador y, si pones tu Token y Gist ID, se subirán automáticamente a GitHub al hacer un cambio.
+              </p>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECCIÓN MOVIMIENTOS -->
       <section id="movimientos" class="section active">
         <div class="grid">
           <div class="panel">
@@ -552,6 +278,7 @@
         </div>
       </section>
 
+      <!-- SECCIÓN ESTADÍSTICAS -->
       <section id="estadisticas" class="section">
         <div class="cards">
           <div class="stat-card"><span>Ingresos de hoy</span><strong id="incomeDay">S/ 0.00</strong></div>
@@ -572,6 +299,7 @@
         </div>
       </section>
 
+      <!-- SECCIÓN CATEGORÍAS -->
       <section id="categorias" class="section">
         <div class="grid">
           <div class="panel">
@@ -608,6 +336,7 @@
         </div>
       </section>
 
+      <!-- SECCIÓN LUGARES -->
       <section id="lugares" class="section">
         <div class="grid">
           <div class="panel">
@@ -642,11 +371,13 @@
       </section>
     </main>
 
-    <footer>Hecho con estilo pastel ♡ Datos guardados localmente en tu navegador.</footer>
+    <footer>Hecho con estilo pastel ♡ Datos guardados en local y en la nube.</footer>
   </div>
 
   <script>
     const STORAGE_KEY = "finanzasPastelData";
+    const GITHUB_TOKEN_KEY = "finanzasGithubToken";
+    const GITHUB_GIST_KEY = "finanzasGithubGist";
 
     const defaultData = {
       movements: [],
@@ -664,51 +395,119 @@
       ]
     };
 
-    let data = loadData();
+    let data = defaultData;
     let barChart;
     let pieChart;
 
     const $ = (selector) => document.querySelector(selector);
     const $$ = (selector) => document.querySelectorAll(selector);
 
-    function loadData() {
+    // --- LÓGICA DE LA NUBE (GITHUB GIST) ---
+
+    function setStatus(text, color) {
+      const statusObj = $("#cloudStatus");
+      statusObj.textContent = text;
+      statusObj.style.color = color || "var(--gris)";
+    }
+
+    async function loadData() {
+      const token = localStorage.getItem(GITHUB_TOKEN_KEY);
+      const gistId = localStorage.getItem(GITHUB_GIST_KEY);
+
+      // Si hay credenciales, intenta descargar de GitHub
+      if (token && gistId) {
+        setStatus("☁️ Sincronizando...", "var(--morado-oscuro)");
+        try {
+          const response = await fetch(`https://api.github.com/gists/${gistId}`, {
+            headers: { Authorization: `token ${token}` }
+          });
+          if (!response.ok) throw new Error("Error en credenciales");
+          
+          const gist = await response.json();
+          const content = gist.files["finanzas_data.json"].content;
+          
+          setStatus("☁️ Nube conectada", "var(--verde)");
+          
+          // Guardar copia de seguridad local por si falla luego
+          const parsedData = JSON.parse(content);
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(parsedData));
+          return parsedData;
+
+        } catch (error) {
+          console.error(error);
+          setStatus("⚠️ Error de Nube, usando Local", "var(--rojo)");
+        }
+      } else {
+        setStatus("☁️ Modo Local", "var(--gris)");
+      }
+
+      // Si no hay nube o falló, cargar del LocalStorage
       const stored = localStorage.getItem(STORAGE_KEY);
       return stored ? JSON.parse(stored) : defaultData;
     }
 
-    function saveData() {
+    async function saveData() {
+      // 1. Guardar localmente siempre (muy rápido)
       localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+
+      // 2. Si hay credenciales, guardar en la nube (asíncrono)
+      const token = localStorage.getItem(GITHUB_TOKEN_KEY);
+      const gistId = localStorage.getItem(GITHUB_GIST_KEY);
+
+      if (token && gistId) {
+        setStatus("☁️ Guardando en nube...", "var(--morado-oscuro)");
+        try {
+          const response = await fetch(`https://api.github.com/gists/${gistId}`, {
+            method: "PATCH",
+            headers: {
+              Authorization: `token ${token}`,
+              Accept: "application/vnd.github.v3+json"
+            },
+            body: JSON.stringify({
+              files: {
+                "finanzas_data.json": { content: JSON.stringify(data) }
+              }
+            })
+          });
+
+          if (!response.ok) throw new Error("Fallo al guardar");
+          setStatus("☁️ Nube actualizada", "var(--verde)");
+        } catch (error) {
+          console.error(error);
+          setStatus("⚠️ Error al guardar en nube", "var(--rojo)");
+        }
+      }
     }
 
-    function money(value) {
-      return new Intl.NumberFormat("es-PE", {
-        style: "currency",
-        currency: "PEN"
-      }).format(Number(value || 0));
-    }
+    // Formularios de configuración
+    $("#githubToken").value = localStorage.getItem(GITHUB_TOKEN_KEY) || "";
+    $("#gistId").value = localStorage.getItem(GITHUB_GIST_KEY) || "";
 
-    function todayISO() {
-      return new Date().toISOString().slice(0, 10);
-    }
+    $("#cloudForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      localStorage.setItem(GITHUB_TOKEN_KEY, $("#githubToken").value.trim());
+      localStorage.setItem(GITHUB_GIST_KEY, $("#gistId").value.trim());
+      alert("Credenciales guardadas. Descargando datos de la nube...");
+      data = await loadData();
+      renderAll();
+    });
 
-    function getCategoryName(id) {
-      return data.categories.find(cat => cat.id === id)?.name || "Sin categoría";
-    }
+    $("#forceSyncBtn").addEventListener("click", () => {
+      saveData();
+    });
 
-    function getPlaceName(id) {
-      return data.places.find(place => place.id === id)?.name || "Sin lugar";
-    }
+    // --- FIN LÓGICA DE LA NUBE ---
+
+    function money(value) { return new Intl.NumberFormat("es-PE", { style: "currency", currency: "PEN" }).format(Number(value || 0)); }
+    function todayISO() { return new Date().toISOString().slice(0, 10); }
+    function getCategoryName(id) { return data.categories.find(cat => cat.id === id)?.name || "Sin categoría"; }
+    function getPlaceName(id) { return data.places.find(place => place.id === id)?.name || "Sin lugar"; }
 
     function sumMovements(type, filterFn = () => true) {
-      return data.movements
-        .filter(m => m.type === type && filterFn(m))
-        .reduce((sum, m) => sum + Number(m.amount), 0);
+      return data.movements.filter(m => m.type === type && filterFn(m)).reduce((sum, m) => sum + Number(m.amount), 0);
     }
 
-    function isSameDay(dateString) {
-      return dateString === todayISO();
-    }
-
+    function isSameDay(dateString) { return dateString === todayISO(); }
     function isSameWeek(dateString) {
       const date = new Date(dateString + "T00:00:00");
       const now = new Date();
@@ -720,7 +519,6 @@
       lastDay.setHours(23, 59, 59, 999);
       return date >= firstDay && date <= lastDay;
     }
-
     function isSameMonth(dateString) {
       const date = new Date(dateString + "T00:00:00");
       const now = new Date();
@@ -737,33 +535,18 @@
         const byType = type === "todos" || m.type === type;
         const byCategory = category === "todos" || m.categoryId === category;
         const byPlace = place === "todos" || m.placeId === place;
-        const byPeriod =
-          period === "todos" ||
-          (period === "dia" && isSameDay(m.date)) ||
-          (period === "semana" && isSameWeek(m.date)) ||
-          (period === "mes" && isSameMonth(m.date));
-
+        const byPeriod = period === "todos" || (period === "dia" && isSameDay(m.date)) || (period === "semana" && isSameWeek(m.date)) || (period === "mes" && isSameMonth(m.date));
         return byType && byCategory && byPlace && byPeriod;
       }).sort((a, b) => b.date.localeCompare(a.date));
     }
 
     function renderSelects() {
       const type = $("#movementType").value;
-      const categoryOptions = data.categories
-        .filter(cat => cat.type === type)
-        .map(cat => `<option value="${cat.id}">${cat.name}</option>`)
-        .join("");
+      const categoryOptions = data.categories.filter(cat => cat.type === type).map(cat => `<option value="${cat.id}">${cat.name}</option>`).join("");
       $("#movementCategory").innerHTML = categoryOptions || `<option value="">Crea una categoría primero</option>`;
-
-      $("#movementPlace").innerHTML = data.places
-        .map(place => `<option value="${place.id}">${place.name}</option>`)
-        .join("") || `<option value="">Crea un lugar primero</option>`;
-
-      $("#filterCategory").innerHTML = `<option value="todos">Todas las categorías</option>` +
-        data.categories.map(cat => `<option value="${cat.id}">${cat.name}</option>`).join("");
-
-      $("#filterPlace").innerHTML = `<option value="todos">Todos los lugares</option>` +
-        data.places.map(place => `<option value="${place.id}">${place.name}</option>`).join("");
+      $("#movementPlace").innerHTML = data.places.map(place => `<option value="${place.id}">${place.name}</option>`).join("") || `<option value="">Crea un lugar primero</option>`;
+      $("#filterCategory").innerHTML = `<option value="todos">Todas las categorías</option>` + data.categories.map(cat => `<option value="${cat.id}">${cat.name}</option>`).join("");
+      $("#filterPlace").innerHTML = `<option value="todos">Todos los lugares</option>` + data.places.map(place => `<option value="${place.id}">${place.name}</option>`).join("");
     }
 
     function renderDashboard() {
@@ -773,17 +556,10 @@
       $("#totalGastos").textContent = money(expense);
       $("#balanceTotal").textContent = money(income - expense);
 
-      const dayIncome = sumMovements("ingreso", m => isSameDay(m.date));
-      const dayExpense = sumMovements("gasto", m => isSameDay(m.date));
-      const weekIncome = sumMovements("ingreso", m => isSameWeek(m.date));
-      const weekExpense = sumMovements("gasto", m => isSameWeek(m.date));
-      const monthIncome = sumMovements("ingreso", m => isSameMonth(m.date));
-      const monthExpense = sumMovements("gasto", m => isSameMonth(m.date));
-
-      $("#incomeDay").textContent = money(dayIncome);
-      $("#expenseDay").textContent = money(dayExpense);
-      $("#balanceWeek").textContent = money(weekIncome - weekExpense);
-      $("#balanceMonth").textContent = money(monthIncome - monthExpense);
+      $("#incomeDay").textContent = money(sumMovements("ingreso", m => isSameDay(m.date)));
+      $("#expenseDay").textContent = money(sumMovements("gasto", m => isSameDay(m.date)));
+      $("#balanceWeek").textContent = money(sumMovements("ingreso", m => isSameWeek(m.date)) - sumMovements("gasto", m => isSameWeek(m.date)));
+      $("#balanceMonth").textContent = money(sumMovements("ingreso", m => isSameMonth(m.date)) - sumMovements("gasto", m => isSameMonth(m.date)));
     }
 
     function renderMovements() {
@@ -803,7 +579,6 @@
           </td>
         </tr>
       `).join("");
-
       $("#movementsTable").innerHTML = rows;
       $("#movementsEmpty").style.display = rows ? "none" : "block";
     }
@@ -811,10 +586,7 @@
     function renderCategories() {
       $("#categoriesList").innerHTML = data.categories.map(cat => `
         <div class="list-item">
-          <div>
-            <strong>${cat.name}</strong><br>
-            <span class="pill ${cat.type === "ingreso" ? "income" : "expense"}">${cat.type}</span>
-          </div>
+          <div><strong>${cat.name}</strong><br><span class="pill ${cat.type === "ingreso" ? "income" : "expense"}">${cat.type}</span></div>
           <div class="actions">
             <button class="edit-btn" onclick="editCategory('${cat.id}')">Editar</button>
             <button class="delete-btn" onclick="deleteCategory('${cat.id}')">Borrar</button>
@@ -826,10 +598,7 @@
     function renderPlaces() {
       $("#placesList").innerHTML = data.places.map(place => `
         <div class="list-item">
-          <div>
-            <strong>${place.name}</strong><br>
-            <span>${place.note || "Sin nota"}</span>
-          </div>
+          <div><strong>${place.name}</strong><br><span>${place.note || "Sin nota"}</span></div>
           <div class="actions">
             <button class="edit-btn" onclick="editPlace('${place.id}')">Editar</button>
             <button class="delete-btn" onclick="deletePlace('${place.id}')">Borrar</button>
@@ -839,148 +608,52 @@
     }
 
     function renderCharts() {
-      const dayIncome = sumMovements("ingreso", m => isSameDay(m.date));
-      const dayExpense = sumMovements("gasto", m => isSameDay(m.date));
-      const weekIncome = sumMovements("ingreso", m => isSameWeek(m.date));
-      const weekExpense = sumMovements("gasto", m => isSameWeek(m.date));
-      const monthIncome = sumMovements("ingreso", m => isSameMonth(m.date));
-      const monthExpense = sumMovements("gasto", m => isSameMonth(m.date));
-
       if (barChart) barChart.destroy();
       barChart = new Chart($("#barChart"), {
         type: "bar",
         data: {
           labels: ["Día", "Semana", "Mes"],
           datasets: [
-            { label: "Ingresos", data: [dayIncome, weekIncome, monthIncome], backgroundColor: "#c8a2c8" },
-            { label: "Gastos", data: [dayExpense, weekExpense, monthExpense], backgroundColor: "#f8c8dc" }
+            { label: "Ingresos", data: [sumMovements("ingreso", m => isSameDay(m.date)), sumMovements("ingreso", m => isSameWeek(m.date)), sumMovements("ingreso", m => isSameMonth(m.date))], backgroundColor: "#c8a2c8" },
+            { label: "Gastos", data: [sumMovements("gasto", m => isSameDay(m.date)), sumMovements("gasto", m => isSameWeek(m.date)), sumMovements("gasto", m => isSameMonth(m.date))], backgroundColor: "#f8c8dc" }
           ]
         },
-        options: {
-          responsive: true,
-          plugins: { legend: { position: "bottom" } },
-          scales: { y: { beginAtZero: true } }
-        }
+        options: { responsive: true, plugins: { legend: { position: "bottom" } }, scales: { y: { beginAtZero: true } } }
       });
 
-      const expenseByCategory = data.categories
-        .filter(cat => cat.type === "gasto")
-        .map(cat => ({
-          name: cat.name,
-          total: sumMovements("gasto", m => m.categoryId === cat.id)
-        }))
-        .filter(item => item.total > 0);
-
+      const expenseByCategory = data.categories.filter(cat => cat.type === "gasto").map(cat => ({ name: cat.name, total: sumMovements("gasto", m => m.categoryId === cat.id) })).filter(item => item.total > 0);
       if (pieChart) pieChart.destroy();
       pieChart = new Chart($("#pieChart"), {
         type: "doughnut",
         data: {
           labels: expenseByCategory.map(item => item.name),
-          datasets: [{
-            data: expenseByCategory.map(item => item.total),
-            backgroundColor: ["#c8a2c8", "#f8c8dc", "#dcc6e0", "#f5d0e0", "#bfa2db", "#ffd6e7"]
-          }]
+          datasets: [{ data: expenseByCategory.map(item => item.total), backgroundColor: ["#c8a2c8", "#f8c8dc", "#dcc6e0", "#f5d0e0", "#bfa2db", "#ffd6e7"] }]
         },
-        options: {
-          responsive: true,
-          plugins: { legend: { position: "bottom" } }
-        }
+        options: { responsive: true, plugins: { legend: { position: "bottom" } } }
       });
     }
 
-    function renderAll() {
-      saveData();
+    function renderAll(skipSave = false) {
+      if(!skipSave) saveData();
       renderSelects();
       renderDashboard();
       renderMovements();
       renderCategories();
       renderPlaces();
-      renderCharts();
+      if($("#estadisticas").classList.contains("active")) renderCharts();
     }
 
-    function resetMovementForm() {
-      $("#movementId").value = "";
-      $("#movementFormTitle").textContent = "Añadir movimiento";
-      $("#movementForm").reset();
-      $("#movementDate").value = todayISO();
-      renderSelects();
-    }
-
-    function editMovement(id) {
-      const m = data.movements.find(item => item.id === id);
-      if (!m) return;
-      $("#movementId").value = m.id;
-      $("#movementType").value = m.type;
-      renderSelects();
-      $("#movementAmount").value = m.amount;
-      $("#movementDate").value = m.date;
-      $("#movementDescription").value = m.description;
-      $("#movementCategory").value = m.categoryId;
-      $("#movementPlace").value = m.placeId;
-      $("#movementFormTitle").textContent = "Editar movimiento";
-      showSection("movimientos");
-      window.scrollTo({ top: 220, behavior: "smooth" });
-    }
-
-    function deleteMovement(id) {
-      if (!confirm("¿Deseas borrar este movimiento?")) return;
-      data.movements = data.movements.filter(m => m.id !== id);
-      renderAll();
-    }
-
-    function editCategory(id) {
-      const cat = data.categories.find(item => item.id === id);
-      if (!cat) return;
-      $("#categoryId").value = cat.id;
-      $("#categoryName").value = cat.name;
-      $("#categoryType").value = cat.type;
-      $("#categoryFormTitle").textContent = "Editar categoría";
-    }
-
-    function deleteCategory(id) {
-      const used = data.movements.some(m => m.categoryId === id);
-      if (used) {
-        alert("No puedes borrar esta categoría porque tiene movimientos asociados.");
-        return;
-      }
-      if (!confirm("¿Deseas borrar esta categoría?")) return;
-      data.categories = data.categories.filter(cat => cat.id !== id);
-      renderAll();
-    }
-
-    function resetCategoryForm() {
-      $("#categoryId").value = "";
-      $("#categoryName").value = "";
-      $("#categoryType").value = "ingreso";
-      $("#categoryFormTitle").textContent = "Añadir categoría";
-    }
-
-    function editPlace(id) {
-      const place = data.places.find(item => item.id === id);
-      if (!place) return;
-      $("#placeId").value = place.id;
-      $("#placeName").value = place.name;
-      $("#placeNote").value = place.note || "";
-      $("#placeFormTitle").textContent = "Editar lugar";
-    }
-
-    function deletePlace(id) {
-      const used = data.movements.some(m => m.placeId === id);
-      if (used) {
-        alert("No puedes borrar este lugar porque tiene movimientos asociados.");
-        return;
-      }
-      if (!confirm("¿Deseas borrar este lugar?")) return;
-      data.places = data.places.filter(place => place.id !== id);
-      renderAll();
-    }
-
-    function resetPlaceForm() {
-      $("#placeId").value = "";
-      $("#placeName").value = "";
-      $("#placeNote").value = "";
-      $("#placeFormTitle").textContent = "Añadir lugar";
-    }
+    function resetMovementForm() { $("#movementId").value = ""; $("#movementFormTitle").textContent = "Añadir movimiento"; $("#movementForm").reset(); $("#movementDate").value = todayISO(); renderSelects(); }
+    function editMovement(id) { const m = data.movements.find(item => item.id === id); if (!m) return; $("#movementId").value = m.id; $("#movementType").value = m.type; renderSelects(); $("#movementAmount").value = m.amount; $("#movementDate").value = m.date; $("#movementDescription").value = m.description; $("#movementCategory").value = m.categoryId; $("#movementPlace").value = m.placeId; $("#movementFormTitle").textContent = "Editar movimiento"; showSection("movimientos"); window.scrollTo({ top: 220, behavior: "smooth" }); }
+    function deleteMovement(id) { if (!confirm("¿Deseas borrar este movimiento?")) return; data.movements = data.movements.filter(m => m.id !== id); renderAll(); }
+    
+    function resetCategoryForm() { $("#categoryId").value = ""; $("#categoryName").value = ""; $("#categoryType").value = "ingreso"; $("#categoryFormTitle").textContent = "Añadir categoría"; }
+    function editCategory(id) { const cat = data.categories.find(item => item.id === id); if (!cat) return; $("#categoryId").value = cat.id; $("#categoryName").value = cat.name; $("#categoryType").value = cat.type; $("#categoryFormTitle").textContent = "Editar categoría"; }
+    function deleteCategory(id) { const used = data.movements.some(m => m.categoryId === id); if (used) { alert("No puedes borrar esta categoría porque tiene movimientos asociados."); return; } if (!confirm("¿Deseas borrar esta categoría?")) return; data.categories = data.categories.filter(cat => cat.id !== id); renderAll(); }
+    
+    function resetPlaceForm() { $("#placeId").value = ""; $("#placeName").value = ""; $("#placeNote").value = ""; $("#placeFormTitle").textContent = "Añadir lugar"; }
+    function editPlace(id) { const place = data.places.find(item => item.id === id); if (!place) return; $("#placeId").value = place.id; $("#placeName").value = place.name; $("#placeNote").value = place.note || ""; $("#placeFormTitle").textContent = "Editar lugar"; }
+    function deletePlace(id) { const used = data.movements.some(m => m.placeId === id); if (used) { alert("No puedes borrar este lugar porque tiene movimientos asociados."); return; } if (!confirm("¿Deseas borrar este lugar?")) return; data.places = data.places.filter(place => place.id !== id); renderAll(); }
 
     function showSection(sectionId) {
       $$(".section").forEach(section => section.classList.remove("active"));
@@ -990,84 +663,50 @@
       if (sectionId === "estadisticas") renderCharts();
     }
 
-    $$(".tab-btn").forEach(button => {
-      button.addEventListener("click", () => showSection(button.dataset.section));
-    });
-
+    $$(".tab-btn").forEach(button => { button.addEventListener("click", () => showSection(button.dataset.section)); });
     $("#movementDate").value = todayISO();
-
     $("#movementType").addEventListener("change", renderSelects);
 
-    $("#movementForm").addEventListener("submit", (event) => {
-      event.preventDefault();
+    $("#movementForm").addEventListener("submit", (e) => {
+      e.preventDefault();
       const id = $("#movementId").value || crypto.randomUUID();
-      const movement = {
-        id,
-        type: $("#movementType").value,
-        amount: Number($("#movementAmount").value),
-        date: $("#movementDate").value,
-        description: $("#movementDescription").value.trim(),
-        categoryId: $("#movementCategory").value,
-        placeId: $("#movementPlace").value
-      };
-
-      if (!movement.categoryId || !movement.placeId) {
-        alert("Agrega al menos una categoría y un lugar antes de guardar.");
-        return;
-      }
-
-      const exists = data.movements.some(m => m.id === id);
-      data.movements = exists
-        ? data.movements.map(m => m.id === id ? movement : m)
-        : [...data.movements, movement];
-
+      const movement = { id, type: $("#movementType").value, amount: Number($("#movementAmount").value), date: $("#movementDate").value, description: $("#movementDescription").value.trim(), categoryId: $("#movementCategory").value, placeId: $("#movementPlace").value };
+      if (!movement.categoryId || !movement.placeId) return alert("Agrega categoría y lugar primero.");
+      data.movements = data.movements.some(m => m.id === id) ? data.movements.map(m => m.id === id ? movement : m) : [...data.movements, movement];
       resetMovementForm();
       renderAll();
     });
-
     $("#cancelMovementEdit").addEventListener("click", resetMovementForm);
 
-    ["#filterType", "#filterPeriod", "#filterCategory", "#filterPlace"].forEach(selector => {
-      $(selector).addEventListener("change", renderMovements);
-    });
+    ["#filterType", "#filterPeriod", "#filterCategory", "#filterPlace"].forEach(selector => { $(selector).addEventListener("change", renderMovements); });
 
-    $("#categoryForm").addEventListener("submit", (event) => {
-      event.preventDefault();
+    $("#categoryForm").addEventListener("submit", (e) => {
+      e.preventDefault();
       const id = $("#categoryId").value || crypto.randomUUID();
-      const category = {
-        id,
-        name: $("#categoryName").value.trim(),
-        type: $("#categoryType").value
-      };
-      const exists = data.categories.some(cat => cat.id === id);
-      data.categories = exists
-        ? data.categories.map(cat => cat.id === id ? category : cat)
-        : [...data.categories, category];
+      const category = { id, name: $("#categoryName").value.trim(), type: $("#categoryType").value };
+      data.categories = data.categories.some(cat => cat.id === id) ? data.categories.map(cat => cat.id === id ? category : cat) : [...data.categories, category];
       resetCategoryForm();
       renderAll();
     });
-
     $("#cancelCategoryEdit").addEventListener("click", resetCategoryForm);
 
-    $("#placeForm").addEventListener("submit", (event) => {
-      event.preventDefault();
+    $("#placeForm").addEventListener("submit", (e) => {
+      e.preventDefault();
       const id = $("#placeId").value || crypto.randomUUID();
-      const place = {
-        id,
-        name: $("#placeName").value.trim(),
-        note: $("#placeNote").value.trim()
-      };
-      const exists = data.places.some(item => item.id === id);
-      data.places = exists
-        ? data.places.map(item => item.id === id ? place : item)
-        : [...data.places, place];
+      const place = { id, name: $("#placeName").value.trim(), note: $("#placeNote").value.trim() };
+      data.places = data.places.some(item => item.id === id) ? data.places.map(item => item.id === id ? place : item) : [...data.places, place];
       resetPlaceForm();
       renderAll();
     });
-
     $("#cancelPlaceEdit").addEventListener("click", resetPlaceForm);
 
-    renderAll();
+    // Inicializar App
+    async function initApp() {
+      data = await loadData();
+      renderAll(true); // renderiza sin guardar para no sobreescribir inmediatamente
+    }
+    initApp();
+
   </script>
 </body>
 </html>
