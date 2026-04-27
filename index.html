@@ -24,7 +24,7 @@
     
     html, body {
       width: 100vw;
-      overflow-x: hidden; /* Evita el scroll horizontal fantasma */
+      overflow-x: hidden;
       background-color: var(--bg);
       color: var(--texto);
       -webkit-tap-highlight-color: transparent;
@@ -47,7 +47,6 @@
       padding-bottom: 80px;
     }
 
-    /* BOTÓN CONFIGURACIÓN (Solo Icono Arriba Derecha) */
     .top-bar { display: flex; justify-content: flex-end; margin-bottom: 8px; }
     .btn-icon {
       background: rgba(255, 255, 255, 0.8);
@@ -60,7 +59,6 @@
       cursor: pointer; box-shadow: 0 4px 10px rgba(143, 95, 153, 0.1);
     }
 
-    /* TARJETAS PRINCIPALES */
     .card {
       background: rgba(255, 255, 255, 0.9);
       border: 1px solid rgba(234, 220, 242, 0.8);
@@ -87,7 +85,6 @@
     .metric span { font-size: 11px; margin-bottom: 2px; display: block;}
     .metric strong { font-size: 16px; }
 
-    /* MENÚ NAVEGACIÓN DESLIZABLE */
     nav {
       display: flex; gap: 8px; margin-bottom: 20px;
       overflow-x: auto; padding-bottom: 4px;
@@ -101,22 +98,18 @@
     }
     .tab-btn.active { background: var(--morado-oscuro); color: white; border-color: var(--morado-oscuro); }
 
-    /* SECCIONES */
     .section { display: none; animation: fade 0.3s ease; }
     .section.active { display: block; }
     @keyframes fade { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
 
     .section-title { font-size: 18px; color: var(--morado-oscuro); margin-bottom: 16px; }
 
-    /* FORMULARIO MINIMALISTA (RÁPIDO) */
     .form-group { margin-bottom: 12px; }
     
-    /* Toggle Ingreso/Gasto */
     .type-toggle { display: flex; background: var(--rosa-suave); border-radius: 16px; padding: 4px; margin-bottom: 16px;}
     .type-btn { flex: 1; text-align: center; padding: 12px; font-size: 14px; font-weight: bold; color: var(--gris); border-radius: 12px; transition: 0.2s;}
     .type-btn.active { background: white; color: var(--morado-oscuro); box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
 
-    /* Monto Gigante */
     .monto-input-container { position: relative; margin-bottom: 16px; }
     .monto-input-container span { position: absolute; left: 16px; top: 50%; transform: translateY(-50%); font-size: 28px; color: var(--morado-oscuro); font-weight: bold;}
     .monto-input { 
@@ -126,7 +119,6 @@
     }
     .monto-input:focus { border-color: var(--morado); }
 
-    /* Inputs normales */
     input[type="text"], input[type="date"], input[type="password"], select, textarea {
       width: 100%; background: white; border: 1px solid var(--borde); border-radius: 14px;
       padding: 14px; font-size: 16px; color: var(--texto); outline: none; -webkit-appearance: none;
@@ -135,9 +127,8 @@
     
     .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 
-    .btn-main { width: 100%; background: linear-gradient(135deg, var(--morado), var(--rosa)); color: white; border: none; padding: 16px; border-radius: 16px; font-size: 16px; font-weight: bold; margin-top: 8px; box-shadow: 0 4px 15px rgba(143, 95, 153, 0.2); }
+    .btn-main { width: 100%; background: linear-gradient(135deg, var(--morado), var(--rosa)); color: white; border: none; padding: 16px; border-radius: 16px; font-size: 16px; font-weight: bold; margin-top: 8px; box-shadow: 0 4px 15px rgba(143, 95, 153, 0.2); cursor: pointer;}
 
-    /* TABLA HISTORIAL ADAPTADA A MÓVIL */
     .table-container { width: 100%; overflow-x: auto; background: white; border-radius: 16px; border: 1px solid var(--borde); }
     table { width: 100%; border-collapse: collapse; min-width: 500px; }
     th { background: var(--rosa-suave); color: var(--morado-oscuro); font-size: 11px; text-transform: uppercase; padding: 12px; text-align: left; }
@@ -146,14 +137,12 @@
     .inc { background: #e8fff2; color: #287a50; }
     .exp { background: #fff0f5; color: #b84c6c; }
     .action-btns { display: flex; gap: 6px; }
-    .btn-sm { padding: 6px 10px; border-radius: 8px; font-size: 12px; border: none; font-weight: bold; }
+    .btn-sm { padding: 6px 10px; border-radius: 8px; font-size: 12px; border: none; font-weight: bold; cursor: pointer; }
     .btn-edit { background: var(--morado-suave); color: var(--morado-oscuro); }
     .btn-del { background: #ffe2ec; color: #b04462; }
 
-    /* GRÁFICOS RESTRINGIDOS */
     .chart-wrapper { position: relative; height: 220px; width: 100%; margin-bottom: 20px;}
     
-    /* LISTAS SIMPLES */
     .list-item { background: white; border: 1px solid var(--borde); padding: 14px; border-radius: 16px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center;}
     .list-item strong { font-size: 15px; color: var(--morado-oscuro); display: block; margin-bottom: 2px;}
     
@@ -198,7 +187,7 @@
     </nav>
 
     <main>
-      <!-- 1. SECCIÓN NUEVO MOVIMIENTO (RÁPIDA) -->
+      <!-- SECCIÓN NUEVO MOVIMIENTO -->
       <section id="nuevo" class="section active card">
         <h2 class="section-title" id="formTitle">Registrar movimiento</h2>
         <form id="movementForm">
@@ -233,7 +222,7 @@
         </form>
       </section>
 
-      <!-- 2. SECCIÓN HISTORIAL -->
+      <!-- SECCIÓN HISTORIAL -->
       <section id="historial" class="section card">
         <h2 class="section-title">Historial</h2>
         
@@ -268,7 +257,7 @@
         <div id="movementsEmpty" class="empty-state" style="display:none;">Aún no hay movimientos.</div>
       </section>
 
-      <!-- 3. SECCIÓN ESTADÍSTICAS -->
+      <!-- SECCIÓN ESTADÍSTICAS -->
       <section id="estadisticas" class="section card">
         <h2 class="section-title">Estadísticas</h2>
         
@@ -289,7 +278,7 @@
         </div>
       </section>
 
-      <!-- 4. SECCIÓN CATEGORÍAS -->
+      <!-- SECCIÓN CATEGORÍAS -->
       <section id="categorias" class="section card">
         <h2 class="section-title">Categorías</h2>
         <form id="categoryForm" class="form-group">
@@ -305,7 +294,7 @@
         <div id="categoriesList"></div>
       </section>
 
-      <!-- 5. SECCIÓN LUGARES -->
+      <!-- SECCIÓN LUGARES -->
       <section id="lugares" class="section card">
         <h2 class="section-title">Lugares</h2>
         <form id="placeForm" class="form-group">
@@ -315,18 +304,18 @@
         <div id="placesList"></div>
       </section>
 
-      <!-- 6. SECCIÓN CONFIGURACIÓN (NUBE) -->
+      <!-- SECCIÓN CONFIGURACIÓN (NUBE) -->
       <section id="configuracion" class="section card">
         <h2 class="section-title">Configuración Nube</h2>
         <p style="font-size:13px; color:var(--gris); margin-bottom:16px;">Pega tus credenciales de GitHub para mantener ambos celulares sincronizados al instante.</p>
         <form id="cloudForm">
           <div class="form-group">
             <label style="font-size:12px; font-weight:bold; color:var(--morado-oscuro)">Token (PAT)</label>
-            <input type="password" id="githubToken" placeholder="ghp_..." />
+            <input type="password" id="githubToken" placeholder="ghp_..." required/>
           </div>
           <div class="form-group">
             <label style="font-size:12px; font-weight:bold; color:var(--morado-oscuro)">Gist ID</label>
-            <input type="text" id="gistId" placeholder="Ej. 8a3f8..." />
+            <input type="text" id="gistId" placeholder="Ej. 8a3f8..." required/>
           </div>
           <button type="submit" class="btn-main">Guardar y Sincronizar</button>
         </form>
@@ -365,18 +354,34 @@
     async function loadData() {
       const token = localStorage.getItem(GITHUB_TOKEN_KEY);
       const gistId = localStorage.getItem(GITHUB_GIST_KEY);
+      
       if (token && gistId) {
         setStatus("☁️ Sincronizando...");
         try {
-          const res = await fetch(`https://api.github.com/gists/${gistId}`, { headers: { Authorization: `token ${token}` } });
-          if (!res.ok) throw new Error();
+          const res = await fetch(`https://api.github.com/gists/${gistId}`, { 
+            headers: { Authorization: `token ${token}` } 
+          });
+          if (!res.ok) throw new Error("Credenciales inválidas");
+          
           const gist = await res.json();
-          const parsed = JSON.parse(gist.files["finanzas_data.json"].content);
+          let parsed = JSON.parse(gist.files["finanzas_data.json"].content);
+          
+          // PROTECCIÓN: Si el Gist está vacío ({}), inyectamos la data por defecto.
+          if (!parsed.categories || !parsed.movements) {
+            parsed = defaultData;
+          }
+
           localStorage.setItem(STORAGE_KEY, JSON.stringify(parsed));
           setStatus("☁️ Conectado");
           return parsed;
-        } catch (e) { setStatus("⚠️ Local (Error)"); }
-      } else { setStatus("☁️ Modo Local"); }
+
+        } catch (e) { 
+          console.error(e);
+          setStatus("⚠️ Error (Credenciales)"); 
+        }
+      } else { 
+        setStatus("☁️ Modo Local"); 
+      }
       return JSON.parse(localStorage.getItem(STORAGE_KEY)) || defaultData;
     }
 
@@ -384,6 +389,7 @@
       localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
       const token = localStorage.getItem(GITHUB_TOKEN_KEY);
       const gistId = localStorage.getItem(GITHUB_GIST_KEY);
+      
       if (token && gistId) {
         setStatus("☁️ Guardando...");
         try {
