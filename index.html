@@ -26,13 +26,17 @@
     
     .app { width: min(1280px, 94%); margin: 0 auto; padding: 28px 0 50px; }
     header { display: grid; grid-template-columns: 1.4fr 0.8fr; gap: 18px; align-items: stretch; margin-bottom: 24px; }
+    
     .hero, .balance-card, .panel, .table-card { background: rgba(255, 255, 255, 0.8); border: 1px solid rgba(234, 220, 242, 0.9); border-radius: 30px; box-shadow: var(--sombra); backdrop-filter: blur(10px); }
     .hero { padding: 30px; position: relative; overflow: hidden; }
     .hero::after { content: "✦"; position: absolute; right: 28px; top: 20px; font-size: 70px; color: rgba(200, 162, 200, 0.22); }
-    .badge { display: inline-flex; align-items: center; gap: 8px; padding: 9px 15px; border-radius: 999px; background: var(--rosa-suave); color: var(--morado-oscuro); font-size: 14px; font-weight: 700; margin-bottom: 16px; justify-content: space-between; }
-    #cloudStatus { font-size: 12px; color: var(--gris); font-weight: bold; background: white; padding: 4px 10px; border-radius: 20px; border: 1px solid var(--borde); }
-    h1 { font-size: clamp(30px, 4vw, 52px); line-height: 1.02; color: var(--morado-oscuro); margin-bottom: 12px; }
-    .hero p { max-width: 760px; color: var(--gris); line-height: 1.7; font-size: 16px; }
+    
+    .badge { display: flex; align-items: center; gap: 8px; padding: 9px 15px; border-radius: 999px; background: var(--rosa-suave); color: var(--morado-oscuro); font-size: 14px; font-weight: 700; margin-bottom: 16px; justify-content: space-between; flex-wrap: wrap; }
+    #cloudStatus { font-size: 12px; color: var(--gris); font-weight: bold; background: white; padding: 4px 10px; border-radius: 20px; border: 1px solid var(--borde); white-space: nowrap; }
+    
+    h1 { font-size: clamp(28px, 4vw, 52px); line-height: 1.02; color: var(--morado-oscuro); margin-bottom: 12px; }
+    .hero p { max-width: 760px; color: var(--gris); line-height: 1.6; font-size: 15px; }
+    
     .balance-card { padding: 26px; display: flex; flex-direction: column; justify-content: space-between; background: linear-gradient(160deg, var(--morado), var(--rosa)); color: white; min-height: 220px; }
     .balance-card small { text-transform: uppercase; letter-spacing: 1.5px; opacity: 0.86; font-weight: 700; }
     .balance-card h2 { font-size: 42px; margin: 10px 0; }
@@ -40,84 +44,97 @@
     .mini-metric { background: rgba(255, 255, 255, 0.24); border-radius: 20px; padding: 14px; }
     .mini-metric span { display: block; font-size: 13px; opacity: 0.88; margin-bottom: 4px; }
     
-    nav { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 22px; }
-    .tab-btn, button, .ghost-btn { border: 0; cursor: pointer; border-radius: 999px; padding: 11px 17px; font-weight: 800; transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease; }
-    .tab-btn { background: white; color: var(--morado-oscuro); border: 1px solid var(--borde); }
-    .tab-btn.active, .primary-btn { background: linear-gradient(135deg, var(--morado), var(--rosa)); color: white; box-shadow: 0 10px 24px rgba(143, 95, 153, 0.22); }
+    nav { display: flex; gap: 10px; margin-bottom: 22px; flex-wrap: wrap; }
+    .tab-btn, button, .ghost-btn { border: 0; cursor: pointer; border-radius: 999px; padding: 11px 17px; font-weight: 800; transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease; font-size: 14px; }
+    .tab-btn { background: white; color: var(--morado-oscuro); border: 1px solid var(--borde); white-space: nowrap; }
+    .tab-btn.active, .primary-btn { background: linear-gradient(135deg, var(--morado), var(--rosa)); color: white; box-shadow: 0 10px 24px rgba(143, 95, 153, 0.22); border: none; }
     button:hover, .tab-btn:hover { transform: translateY(-2px); }
-
-    /* BOTÓN DE CONFIGURACIÓN FLOTANTE */
-    .settings-btn {
-      position: fixed;
-      top: 24px;
-      right: 24px;
-      width: 50px;
-      height: 50px;
-      padding: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 24px;
-      z-index: 1000;
-      box-shadow: 0 8px 25px rgba(143, 95, 153, 0.2);
-    }
-    .settings-btn:hover {
-      transform: translateY(-2px) rotate(45deg);
-    }
 
     .section { display: none; }
     .section.active { display: block; animation: fadeIn 0.25s ease; }
     @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+    
     .grid { display: grid; grid-template-columns: 0.85fr 1.15fr; gap: 20px; align-items: start; }
     .panel, .table-card { padding: 24px; }
-    .panel-title { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 18px; }
-    .panel-title h2 { color: var(--morado-oscuro); font-size: 24px; }
+    .panel-title { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 18px; flex-wrap: wrap; }
+    .panel-title h2 { color: var(--morado-oscuro); font-size: 22px; }
     .panel-title p { color: var(--gris); font-size: 14px; margin-top: 4px; }
+    
     form { display: grid; gap: 13px; }
     label { font-size: 13px; font-weight: 800; color: var(--morado-oscuro); margin-bottom: -5px; }
-    input, select, textarea { width: 100%; border: 1px solid var(--borde); background: rgba(255, 255, 255, 0.86); border-radius: 18px; padding: 13px 15px; color: var(--texto); outline: none; font-size: 15px; }
+    input, select, textarea { width: 100%; border: 1px solid var(--borde); background: rgba(255, 255, 255, 0.86); border-radius: 18px; padding: 12px 14px; color: var(--texto); outline: none; font-size: 14px; }
     input:focus, select:focus, textarea:focus { border-color: var(--morado); box-shadow: 0 0 0 4px rgba(200, 162, 200, 0.18); }
+    
     .row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
     .actions { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
     .secondary-btn { background: var(--morado-suave); color: var(--morado-oscuro); }
     .danger-btn { background: #ffe8ef; color: #b04462; }
     .edit-btn { background: #efe1ff; color: var(--morado-oscuro); padding: 8px 12px; font-size: 13px; }
     .delete-btn { background: #ffe2ec; color: #b04462; padding: 8px 12px; font-size: 13px; }
-    table { width: 100%; border-collapse: collapse; }
-    th, td { text-align: left; padding: 14px 10px; border-bottom: 1px solid var(--borde); vertical-align: middle; font-size: 14px; }
-    th { color: var(--morado-oscuro); font-size: 13px; text-transform: uppercase; letter-spacing: 0.7px; }
-    .pill { display: inline-flex; align-items: center; padding: 6px 10px; border-radius: 999px; font-weight: 800; font-size: 12px; }
+    
+    table { width: 100%; border-collapse: collapse; min-width: 600px; }
+    .table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; padding-bottom: 10px; }
+    th, td { text-align: left; padding: 14px 10px; border-bottom: 1px solid var(--borde); vertical-align: middle; font-size: 13px; }
+    th { color: var(--morado-oscuro); font-size: 12px; text-transform: uppercase; letter-spacing: 0.7px; }
+    .pill { display: inline-flex; align-items: center; padding: 6px 10px; border-radius: 999px; font-weight: 800; font-size: 11px; }
     .income { background: #e8fff2; color: #32845a; }
     .expense { background: #fff0f5; color: #c25a78; }
+    
     .cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 20px; }
     .stat-card { background: rgba(255, 255, 255, 0.84); border: 1px solid var(--borde); border-radius: 24px; padding: 20px; box-shadow: 0 12px 30px rgba(143, 95, 153, 0.1); }
     .stat-card span { display: block; color: var(--gris); font-size: 13px; font-weight: 800; margin-bottom: 8px; }
-    .stat-card strong { font-size: 25px; color: var(--morado-oscuro); }
-    .charts { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-    .chart-box { background: rgba(255, 255, 255, 0.84); border: 1px solid var(--borde); border-radius: 28px; padding: 22px; box-shadow: var(--sombra); min-height: 330px; }
-    .chart-box h3 { color: var(--morado-oscuro); margin-bottom: 14px; }
-    .list { display: grid; gap: 10px; }
-    .list-item { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 13px 14px; border: 1px solid var(--borde); background: rgba(255, 255, 255, 0.72); border-radius: 18px; }
-    .list-item strong { color: var(--morado-oscuro); }
-    .filters { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 14px; }
-    .empty { text-align: center; padding: 26px; color: var(--gris); background: var(--rosa-suave); border-radius: 20px; margin-top: 10px; }
-    footer { margin-top: 28px; text-align: center; color: var(--gris); font-size: 14px; }
+    .stat-card strong { font-size: 22px; color: var(--morado-oscuro); }
     
-    @media (max-width: 980px) { header, .grid, .charts { grid-template-columns: 1fr; } .cards, .filters { grid-template-columns: repeat(2, 1fr); } }
+    .charts { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .chart-box { background: rgba(255, 255, 255, 0.84); border: 1px solid var(--borde); border-radius: 28px; padding: 20px; box-shadow: var(--sombra); min-height: 300px; }
+    .chart-box h3 { color: var(--morado-oscuro); margin-bottom: 14px; font-size: 16px; }
+    
+    .list { display: grid; gap: 10px; }
+    .list-item { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 13px 14px; border: 1px solid var(--borde); background: rgba(255, 255, 255, 0.72); border-radius: 18px; flex-wrap: wrap; }
+    .list-item strong { color: var(--morado-oscuro); }
+    
+    .filters { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 14px; }
+    .empty { text-align: center; padding: 26px; color: var(--gris); background: var(--rosa-suave); border-radius: 20px; margin-top: 10px; font-size: 14px; }
+    footer { margin-top: 28px; text-align: center; color: var(--gris); font-size: 13px; padding: 0 10px; }
+    
+    /* ADAPTACIÓN PARA TABLETS */
+    @media (max-width: 980px) { 
+      header, .grid, .charts { grid-template-columns: 1fr; gap: 16px; } 
+      .cards, .filters { grid-template-columns: repeat(2, 1fr); } 
+    }
+
+    /* ADAPTACIÓN PARA CELULARES */
     @media (max-width: 640px) { 
-      .app { width: 94%; padding-top: 16px; } 
+      .app { width: 95%; padding-top: 16px; padding-bottom: 30px; } 
+      
+      /* Navegación deslizable en celular */
+      nav { 
+        flex-wrap: nowrap; 
+        overflow-x: auto; 
+        padding-bottom: 8px; 
+        -webkit-overflow-scrolling: touch; 
+        scrollbar-width: none; /* Firefox */
+      }
+      nav::-webkit-scrollbar { display: none; /* Ocultar barra de scroll en Chrome/Safari */ }
+      
       .hero, .balance-card, .panel, .table-card { border-radius: 22px; padding: 18px; } 
-      .cards, .filters, .row { grid-template-columns: 1fr; } 
-      table { min-width: 760px; } .table-scroll { overflow-x: auto; } 
-      .balance-card h2 { font-size: 34px; } 
-      .settings-btn { top: 16px; right: 16px; width: 42px; height: 42px; font-size: 20px; }
+      .hero::after { font-size: 50px; top: 10px; right: 15px; }
+      
+      .cards { grid-template-columns: 1fr 1fr; } /* 2x2 en celulares */
+      .filters { grid-template-columns: 1fr; } 
+      .row { grid-template-columns: 1fr; gap: 10px; } 
+      
+      .balance-card { min-height: 180px; }
+      .balance-card h2 { font-size: 34px; margin: 6px 0; }
+      .stat-card { padding: 16px; }
+      .stat-card strong { font-size: 20px; }
+      
+      .badge { align-items: flex-start; flex-direction: column; gap: 6px; }
+      #cloudStatus { width: fit-content; }
     }
   </style>
 </head>
 <body>
-
-  <!-- BOTÓN CONFIGURACIÓN ESQUINA SUPERIOR DERECHA -->
-  <button class="tab-btn settings-btn" data-section="configuracion" title="Configuración">⚙️</button>
 
   <div class="app">
     <header>
@@ -153,6 +170,7 @@
       <button class="tab-btn" data-section="estadisticas">Estadísticas</button>
       <button class="tab-btn" data-section="categorias">Categorías</button>
       <button class="tab-btn" data-section="lugares">Lugares</button>
+      <button class="tab-btn" data-section="configuracion">⚙️ Ajustes</button>
     </nav>
 
     <main>
@@ -162,8 +180,8 @@
           <div class="panel">
             <div class="panel-title">
               <div>
-                <h2>Configuración</h2>
-                <p>Conecta tu app con GitHub para guardar tus datos online de forma automática.</p>
+                <h2>Ajustes de la Nube</h2>
+                <p>Conecta tu app con GitHub para sincronizar entre dispositivos.</p>
               </div>
             </div>
             <form id="cloudForm">
@@ -171,14 +189,14 @@
               <input id="githubToken" type="password" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx" />
               
               <label>Gist ID</label>
-              <input id="gistId" type="text" placeholder="Ej. 8a3f8c... (código del Gist)" />
+              <input id="gistId" type="text" placeholder="Ej. 8a3f8c..." />
 
               <div class="actions" style="margin-top: 10px;">
-                <button type="submit" class="primary-btn">Guardar Credenciales</button>
+                <button type="submit" class="primary-btn">Guardar y Sincronizar</button>
                 <button type="button" id="forceSyncBtn" class="secondary-btn">Forzar sincronización</button>
               </div>
               <p style="font-size: 13px; color: var(--gris); margin-top: 15px; line-height: 1.5;">
-                <strong>Nota:</strong> Los datos se guardarán localmente en tu navegador y, si pones tu Token y Gist ID, se subirán automáticamente a GitHub al hacer un cambio.
+                <strong>Nota:</strong> Los datos se suben automáticamente a GitHub cuando agregas un movimiento. Si abres la app en otro celular, usa este mismo Token y Gist ID.
               </p>
             </form>
           </div>
@@ -192,7 +210,7 @@
             <div class="panel-title">
               <div>
                 <h2 id="movementFormTitle">Añadir movimiento</h2>
-                <p>Registra ingresos o gastos con categoría y lugar.</p>
+                <p>Registra ingresos o gastos diarios.</p>
               </div>
             </div>
             <form id="movementForm">
@@ -230,7 +248,7 @@
 
               <div class="actions">
                 <button type="submit" class="primary-btn">Guardar</button>
-                <button type="button" id="cancelMovementEdit" class="secondary-btn">Cancelar edición</button>
+                <button type="button" id="cancelMovementEdit" class="secondary-btn">Cancelar</button>
               </div>
             </form>
           </div>
@@ -239,12 +257,11 @@
             <div class="panel-title">
               <div>
                 <h2>Historial</h2>
-                <p>Filtra, edita o elimina tus movimientos.</p>
               </div>
             </div>
             <div class="filters">
               <select id="filterType">
-                <option value="todos">Todos</option>
+                <option value="todos">Todos los tipos</option>
                 <option value="ingreso">Ingresos</option>
                 <option value="gasto">Gastos</option>
               </select>
@@ -306,7 +323,6 @@
             <div class="panel-title">
               <div>
                 <h2 id="categoryFormTitle">Añadir categoría</h2>
-                <p>Crea categorías para ingresos y gastos.</p>
               </div>
             </div>
             <form id="categoryForm">
@@ -319,8 +335,8 @@
                 <option value="gasto">Gasto</option>
               </select>
               <div class="actions">
-                <button type="submit" class="primary-btn">Guardar categoría</button>
-                <button type="button" id="cancelCategoryEdit" class="secondary-btn">Cancelar edición</button>
+                <button type="submit" class="primary-btn">Guardar</button>
+                <button type="button" id="cancelCategoryEdit" class="secondary-btn">Cancelar</button>
               </div>
             </form>
           </div>
@@ -328,7 +344,6 @@
             <div class="panel-title">
               <div>
                 <h2>Mis categorías</h2>
-                <p>Edita o elimina tus categorías.</p>
               </div>
             </div>
             <div id="categoriesList" class="list"></div>
@@ -343,18 +358,17 @@
             <div class="panel-title">
               <div>
                 <h2 id="placeFormTitle">Añadir lugar</h2>
-                <p>Registra tiendas, oficinas, bancos o puntos de gasto.</p>
               </div>
             </div>
             <form id="placeForm">
               <input type="hidden" id="placeId" />
               <label>Nombre del lugar</label>
-              <input id="placeName" type="text" placeholder="Ej. Mercado, agencia, farmacia" required />
+              <input id="placeName" type="text" placeholder="Ej. Mercado, farmacia" required />
               <label>Nota opcional</label>
-              <textarea id="placeNote" rows="4" placeholder="Dirección, referencia o comentario"></textarea>
+              <textarea id="placeNote" rows="3" placeholder="Referencia o comentario"></textarea>
               <div class="actions">
-                <button type="submit" class="primary-btn">Guardar lugar</button>
-                <button type="button" id="cancelPlaceEdit" class="secondary-btn">Cancelar edición</button>
+                <button type="submit" class="primary-btn">Guardar</button>
+                <button type="button" id="cancelPlaceEdit" class="secondary-btn">Cancelar</button>
               </div>
             </form>
           </div>
@@ -362,7 +376,6 @@
             <div class="panel-title">
               <div>
                 <h2>Lugares guardados</h2>
-                <p>Edita o elimina lugares usados en tus movimientos.</p>
               </div>
             </div>
             <div id="placesList" class="list"></div>
@@ -414,7 +427,6 @@
       const token = localStorage.getItem(GITHUB_TOKEN_KEY);
       const gistId = localStorage.getItem(GITHUB_GIST_KEY);
 
-      // Si hay credenciales, intenta descargar de GitHub
       if (token && gistId) {
         setStatus("☁️ Sincronizando...", "var(--morado-oscuro)");
         try {
@@ -428,7 +440,6 @@
           
           setStatus("☁️ Nube conectada", "var(--verde)");
           
-          // Guardar copia de seguridad local por si falla luego
           const parsedData = JSON.parse(content);
           localStorage.setItem(STORAGE_KEY, JSON.stringify(parsedData));
           return parsedData;
@@ -441,16 +452,13 @@
         setStatus("☁️ Modo Local", "var(--gris)");
       }
 
-      // Si no hay nube o falló, cargar del LocalStorage
       const stored = localStorage.getItem(STORAGE_KEY);
       return stored ? JSON.parse(stored) : defaultData;
     }
 
     async function saveData() {
-      // 1. Guardar localmente siempre (muy rápido)
       localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
 
-      // 2. Si hay credenciales, guardar en la nube (asíncrono)
       const token = localStorage.getItem(GITHUB_TOKEN_KEY);
       const gistId = localStorage.getItem(GITHUB_GIST_KEY);
 
@@ -474,12 +482,11 @@
           setStatus("☁️ Nube actualizada", "var(--verde)");
         } catch (error) {
           console.error(error);
-          setStatus("⚠️ Error al guardar en nube", "var(--rojo)");
+          setStatus("⚠️ Error al guardar", "var(--rojo)");
         }
       }
     }
 
-    // Formularios de configuración
     $("#githubToken").value = localStorage.getItem(GITHUB_TOKEN_KEY) || "";
     $("#gistId").value = localStorage.getItem(GITHUB_GIST_KEY) || "";
 
@@ -487,9 +494,9 @@
       e.preventDefault();
       localStorage.setItem(GITHUB_TOKEN_KEY, $("#githubToken").value.trim());
       localStorage.setItem(GITHUB_GIST_KEY, $("#gistId").value.trim());
-      alert("Credenciales guardadas. Descargando datos de la nube...");
+      alert("Credenciales guardadas. Sincronizando datos...");
       data = await loadData();
-      renderAll();
+      renderAll(true);
     });
 
     $("#forceSyncBtn").addEventListener("click", () => {
@@ -543,10 +550,10 @@
     function renderSelects() {
       const type = $("#movementType").value;
       const categoryOptions = data.categories.filter(cat => cat.type === type).map(cat => `<option value="${cat.id}">${cat.name}</option>`).join("");
-      $("#movementCategory").innerHTML = categoryOptions || `<option value="">Crea una categoría primero</option>`;
-      $("#movementPlace").innerHTML = data.places.map(place => `<option value="${place.id}">${place.name}</option>`).join("") || `<option value="">Crea un lugar primero</option>`;
-      $("#filterCategory").innerHTML = `<option value="todos">Todas las categorías</option>` + data.categories.map(cat => `<option value="${cat.id}">${cat.name}</option>`).join("");
-      $("#filterPlace").innerHTML = `<option value="todos">Todos los lugares</option>` + data.places.map(place => `<option value="${place.id}">${place.name}</option>`).join("");
+      $("#movementCategory").innerHTML = categoryOptions || `<option value="">Crea una categoría</option>`;
+      $("#movementPlace").innerHTML = data.places.map(place => `<option value="${place.id}">${place.name}</option>`).join("") || `<option value="">Crea un lugar</option>`;
+      $("#filterCategory").innerHTML = `<option value="todos">Categorías</option>` + data.categories.map(cat => `<option value="${cat.id}">${cat.name}</option>`).join("");
+      $("#filterPlace").innerHTML = `<option value="todos">Lugares</option>` + data.places.map(place => `<option value="${place.id}">${place.name}</option>`).join("");
     }
 
     function renderDashboard() {
@@ -649,11 +656,11 @@
     
     function resetCategoryForm() { $("#categoryId").value = ""; $("#categoryName").value = ""; $("#categoryType").value = "ingreso"; $("#categoryFormTitle").textContent = "Añadir categoría"; }
     function editCategory(id) { const cat = data.categories.find(item => item.id === id); if (!cat) return; $("#categoryId").value = cat.id; $("#categoryName").value = cat.name; $("#categoryType").value = cat.type; $("#categoryFormTitle").textContent = "Editar categoría"; }
-    function deleteCategory(id) { const used = data.movements.some(m => m.categoryId === id); if (used) { alert("No puedes borrar esta categoría porque tiene movimientos asociados."); return; } if (!confirm("¿Deseas borrar esta categoría?")) return; data.categories = data.categories.filter(cat => cat.id !== id); renderAll(); }
+    function deleteCategory(id) { const used = data.movements.some(m => m.categoryId === id); if (used) { alert("No puedes borrar esta categoría."); return; } if (!confirm("¿Deseas borrar esta categoría?")) return; data.categories = data.categories.filter(cat => cat.id !== id); renderAll(); }
     
     function resetPlaceForm() { $("#placeId").value = ""; $("#placeName").value = ""; $("#placeNote").value = ""; $("#placeFormTitle").textContent = "Añadir lugar"; }
     function editPlace(id) { const place = data.places.find(item => item.id === id); if (!place) return; $("#placeId").value = place.id; $("#placeName").value = place.name; $("#placeNote").value = place.note || ""; $("#placeFormTitle").textContent = "Editar lugar"; }
-    function deletePlace(id) { const used = data.movements.some(m => m.placeId === id); if (used) { alert("No puedes borrar este lugar porque tiene movimientos asociados."); return; } if (!confirm("¿Deseas borrar este lugar?")) return; data.places = data.places.filter(place => place.id !== id); renderAll(); }
+    function deletePlace(id) { const used = data.movements.some(m => m.placeId === id); if (used) { alert("No puedes borrar este lugar."); return; } if (!confirm("¿Deseas borrar este lugar?")) return; data.places = data.places.filter(place => place.id !== id); renderAll(); }
 
     function showSection(sectionId) {
       $$(".section").forEach(section => section.classList.remove("active"));
@@ -703,7 +710,7 @@
     // Inicializar App
     async function initApp() {
       data = await loadData();
-      renderAll(true); // renderiza sin guardar para no sobreescribir inmediatamente
+      renderAll(true); 
     }
     initApp();
 
