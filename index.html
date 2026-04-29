@@ -47,32 +47,39 @@
       padding-bottom: 80px;
     }
 
-    .top-bar { display: flex; justify-content: flex-end; margin-bottom: 8px; }
-    .btn-icon {
-      background: rgba(255, 255, 255, 0.8);
-      border: 1px solid var(--borde);
-      color: var(--morado-oscuro);
-      font-size: 20px;
-      width: 40px; height: 40px;
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      cursor: pointer; box-shadow: 0 4px 10px rgba(143, 95, 153, 0.1);
-    }
-
+    /* TARJETAS PRINCIPALES */
     .card {
       background: rgba(255, 255, 255, 0.9);
       border: 1px solid rgba(234, 220, 242, 0.8);
       border-radius: 24px;
-      padding: 20px;
+      padding: 22px;
       margin-bottom: 16px;
       box-shadow: 0 8px 24px rgba(143, 95, 153, 0.08);
     }
 
-    .header-card { position: relative; overflow: hidden; }
-    .header-card h1 { font-size: 26px; color: var(--morado-oscuro); margin-bottom: 4px; }
+    /* HEADER CON ICONO DENTRO */
+    .header-card { position: relative; overflow: hidden; padding-right: 60px; }
+    .header-card h1 { font-size: 26px; color: var(--morado-oscuro); margin-bottom: 6px; line-height: 1.1; }
     .header-card p { font-size: 14px; color: var(--gris); line-height: 1.4; }
-    .status-badge { display: inline-block; font-size: 11px; background: var(--rosa-suave); color: var(--morado-oscuro); padding: 4px 10px; border-radius: 12px; font-weight: bold; margin-bottom: 10px;}
+    
+    .status-badge { display: inline-block; font-size: 11px; background: var(--rosa-suave); color: var(--morado-oscuro); padding: 4px 10px; border-radius: 12px; font-weight: bold; margin-bottom: 12px;}
+    
+    .btn-icon {
+      position: absolute;
+      top: 20px; right: 16px;
+      background: var(--rosa-suave);
+      border: 1px solid var(--borde);
+      color: var(--morado-oscuro);
+      font-size: 20px;
+      width: 42px; height: 42px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; box-shadow: 0 4px 10px rgba(143, 95, 153, 0.15);
+      transition: transform 0.2s;
+    }
+    .btn-icon:active { transform: scale(0.9); }
 
+    /* BALANCE */
     .balance-card {
       background: linear-gradient(135deg, var(--morado), var(--rosa));
       color: white; border: none;
@@ -85,6 +92,7 @@
     .metric span { font-size: 11px; margin-bottom: 2px; display: block;}
     .metric strong { font-size: 16px; }
 
+    /* MENÚ NAVEGACIÓN DESLIZABLE */
     nav {
       display: flex; gap: 8px; margin-bottom: 20px;
       overflow-x: auto; padding-bottom: 4px;
@@ -98,19 +106,22 @@
     }
     .tab-btn.active { background: var(--morado-oscuro); color: white; border-color: var(--morado-oscuro); }
 
+    /* SECCIONES */
     .section { display: none; animation: fade 0.3s ease; }
     .section.active { display: block; }
     @keyframes fade { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
 
     .section-title { font-size: 18px; color: var(--morado-oscuro); margin-bottom: 16px; }
 
-    .form-group { margin-bottom: 12px; }
+    /* FORMULARIO ULTRA RÁPIDO */
+    .form-group { margin-bottom: 16px; }
+    .form-group > label { display: block; font-size: 13px; font-weight: bold; color: var(--morado-oscuro); margin-bottom: 8px; padding-left: 4px;}
     
     .type-toggle { display: flex; background: var(--rosa-suave); border-radius: 16px; padding: 4px; margin-bottom: 16px;}
     .type-btn { flex: 1; text-align: center; padding: 12px; font-size: 14px; font-weight: bold; color: var(--gris); border-radius: 12px; transition: 0.2s;}
     .type-btn.active { background: white; color: var(--morado-oscuro); box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
 
-    .monto-input-container { position: relative; margin-bottom: 16px; }
+    .monto-input-container { position: relative; margin-bottom: 20px; }
     .monto-input-container span { position: absolute; left: 16px; top: 50%; transform: translateY(-50%); font-size: 28px; color: var(--morado-oscuro); font-weight: bold;}
     .monto-input { 
       width: 100%; background: white; border: 2px solid var(--borde); border-radius: 20px; 
@@ -119,16 +130,26 @@
     }
     .monto-input:focus { border-color: var(--morado); }
 
+    /* CHIPS (BOTONES RÁPIDOS) */
+    .chip-container { display: flex; flex-wrap: wrap; gap: 8px; }
+    .chip { 
+      background: white; border: 1px solid var(--borde); color: var(--gris); 
+      padding: 8px 14px; border-radius: 12px; font-size: 13px; font-weight: 600; 
+      cursor: pointer; transition: 0.2s; user-select: none;
+    }
+    .chip.active { background: var(--morado-suave); border-color: var(--morado-oscuro); color: var(--morado-oscuro); font-weight: bold;}
+    .chip-add { background: var(--rosa-suave); color: var(--morado-oscuro); border: 1px dashed var(--morado-oscuro); font-weight: bold; }
+
     input[type="text"], input[type="date"], input[type="password"], select, textarea {
       width: 100%; background: white; border: 1px solid var(--borde); border-radius: 14px;
-      padding: 14px; font-size: 16px; color: var(--texto); outline: none; -webkit-appearance: none;
+      padding: 14px; font-size: 15px; color: var(--texto); outline: none; -webkit-appearance: none; margin-top: 8px;
     }
     input:focus, select:focus { border-color: var(--morado); }
     
     .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-
     .btn-main { width: 100%; background: linear-gradient(135deg, var(--morado), var(--rosa)); color: white; border: none; padding: 16px; border-radius: 16px; font-size: 16px; font-weight: bold; margin-top: 8px; box-shadow: 0 4px 15px rgba(143, 95, 153, 0.2); cursor: pointer;}
 
+    /* TABLA HISTORIAL */
     .table-container { width: 100%; overflow-x: auto; background: white; border-radius: 16px; border: 1px solid var(--borde); }
     table { width: 100%; border-collapse: collapse; min-width: 500px; }
     th { background: var(--rosa-suave); color: var(--morado-oscuro); font-size: 11px; text-transform: uppercase; padding: 12px; text-align: left; }
@@ -153,16 +174,16 @@
 <body>
   <div class="app">
 
-    <div class="top-bar">
-      <div class="btn-icon" onclick="showSection('configuracion')" title="Configuración">⚙️</div>
-    </div>
-
+    <!-- HEADER -->
     <div class="card header-card">
       <div class="status-badge" id="cloudStatus">☁️ Modo Local</div>
+      <div class="btn-icon" onclick="showSection('configuracion')" title="Ajustes de Nube">⚙️</div>
+      
       <h1>Finanzas Dalia &lt;3</h1>
-      <p>Control de gastos rápido y elegante.</p>
+      <p>Control de gastos rápido y bonito hecho con amor para la miss más bonita.</p>
     </div>
 
+    <!-- BALANCE -->
     <div class="card balance-card">
       <span>Balance general</span>
       <h2 id="balanceTotal">S/ 0.00</h2>
@@ -187,7 +208,7 @@
     </nav>
 
     <main>
-      <!-- SECCIÓN NUEVO MOVIMIENTO -->
+      <!-- 1. SECCIÓN NUEVO MOVIMIENTO (ULTRA RÁPIDO) -->
       <section id="nuevo" class="section active card">
         <h2 class="section-title" id="formTitle">Registrar movimiento</h2>
         <form id="movementForm">
@@ -205,15 +226,23 @@
           </div>
 
           <div class="form-group">
-            <input type="text" id="movementDescription" placeholder="¿En qué fue? (Ej. Almuerzo)" required />
-          </div>
-
-          <div class="grid-2 form-group">
-            <select id="movementCategory" required></select>
-            <select id="movementPlace" required></select>
+            <label>¿Por qué fue?</label>
+            <div class="chip-container" id="descChips"></div>
+            <input type="text" id="customDesc" placeholder="Escribe el detalle exacto..." style="display:none;" />
           </div>
 
           <div class="form-group">
+            <label>Categoría</label>
+            <div class="chip-container" id="catChips"></div>
+          </div>
+
+          <div class="form-group">
+            <label>Lugar</label>
+            <div class="chip-container" id="placeChips"></div>
+          </div>
+
+          <div class="form-group">
+            <label>Fecha del registro</label>
             <input type="date" id="movementDate" required />
           </div>
 
@@ -222,21 +251,21 @@
         </form>
       </section>
 
-      <!-- SECCIÓN HISTORIAL -->
+      <!-- 2. SECCIÓN HISTORIAL -->
       <section id="historial" class="section card">
-        <h2 class="section-title">Historial</h2>
+        <h2 class="section-title">Historial de movimientos</h2>
         
-        <div class="grid-2 form-group">
+        <div class="grid-2 form-group" style="margin-bottom: 16px;">
           <select id="filterType">
-            <option value="todos">Todos</option>
-            <option value="ingreso">Ingresos</option>
-            <option value="gasto">Gastos</option>
+            <option value="todos">Tipo: Todos</option>
+            <option value="ingreso">Solo Ingresos</option>
+            <option value="gasto">Solo Gastos</option>
           </select>
           <select id="filterPeriod">
-            <option value="todos">Siempre</option>
+            <option value="todos">Tiempo: Siempre</option>
             <option value="dia">Hoy</option>
-            <option value="semana">Semana</option>
-            <option value="mes">Mes</option>
+            <option value="semana">Esta Semana</option>
+            <option value="mes">Este Mes</option>
           </select>
         </div>
 
@@ -244,7 +273,7 @@
           <table>
             <thead>
               <tr>
-                <th>Fecha</th>
+                <th>Fecha y Hora</th>
                 <th>Tipo</th>
                 <th>Detalle</th>
                 <th>Monto</th>
@@ -254,10 +283,10 @@
             <tbody id="movementsTable"></tbody>
           </table>
         </div>
-        <div id="movementsEmpty" class="empty-state" style="display:none;">Aún no hay movimientos.</div>
+        <div id="movementsEmpty" class="empty-state" style="display:none;">Aún no hay movimientos. Registra tu primero.</div>
       </section>
 
-      <!-- SECCIÓN ESTADÍSTICAS -->
+      <!-- 3. SECCIÓN ESTADÍSTICAS -->
       <section id="estadisticas" class="section card">
         <h2 class="section-title">Estadísticas</h2>
         
@@ -278,7 +307,7 @@
         </div>
       </section>
 
-      <!-- SECCIÓN CATEGORÍAS -->
+      <!-- 4. SECCIÓN CATEGORÍAS -->
       <section id="categorias" class="section card">
         <h2 class="section-title">Categorías</h2>
         <form id="categoryForm" class="form-group">
@@ -289,33 +318,33 @@
               <option value="ingreso">Para Ingresos</option>
             </select>
           </div>
-          <button type="submit" class="btn-main" style="padding:10px;">Añadir</button>
+          <button type="submit" class="btn-main" style="padding:10px;">Añadir Categoría</button>
         </form>
         <div id="categoriesList"></div>
       </section>
 
-      <!-- SECCIÓN LUGARES -->
+      <!-- 5. SECCIÓN LUGARES -->
       <section id="lugares" class="section card">
         <h2 class="section-title">Lugares</h2>
         <form id="placeForm" class="form-group">
-          <input type="text" id="placeName" placeholder="Nombre del lugar" required style="margin-bottom:8px;"/>
-          <button type="submit" class="btn-main" style="padding:10px;">Añadir</button>
+          <input type="text" id="placeName" placeholder="Nombre del lugar (Ej. Farmacia)" required style="margin-bottom:8px;"/>
+          <button type="submit" class="btn-main" style="padding:10px;">Añadir Lugar</button>
         </form>
         <div id="placesList"></div>
       </section>
 
-      <!-- SECCIÓN CONFIGURACIÓN (NUBE) -->
+      <!-- 6. SECCIÓN CONFIGURACIÓN (NUBE) -->
       <section id="configuracion" class="section card">
         <h2 class="section-title">Configuración Nube</h2>
         <p style="font-size:13px; color:var(--gris); margin-bottom:16px;">Pega tus credenciales de GitHub para mantener ambos celulares sincronizados al instante.</p>
         <form id="cloudForm">
           <div class="form-group">
-            <label style="font-size:12px; font-weight:bold; color:var(--morado-oscuro)">Token (PAT)</label>
-            <input type="password" id="githubToken" placeholder="ghp_..." required/>
+            <label style="font-size:12px; font-weight:bold; color:var(--morado-oscuro); display:block; margin-bottom:4px;">Token (PAT)</label>
+            <input type="password" id="githubToken" placeholder="ghp_..." required style="margin-top:0;"/>
           </div>
           <div class="form-group">
-            <label style="font-size:12px; font-weight:bold; color:var(--morado-oscuro)">Gist ID</label>
-            <input type="text" id="gistId" placeholder="Ej. 8a3f8..." required/>
+            <label style="font-size:12px; font-weight:bold; color:var(--morado-oscuro); display:block; margin-bottom:4px;">Gist ID</label>
+            <input type="text" id="gistId" placeholder="Ej. 8a3f8..." required style="margin-top:0;"/>
           </div>
           <button type="submit" class="btn-main">Guardar y Sincronizar</button>
         </form>
@@ -334,16 +363,29 @@
       categories: [
         { id: crypto.randomUUID(), name: "Sueldo", type: "ingreso" },
         { id: crypto.randomUUID(), name: "Comida", type: "gasto" },
-        { id: crypto.randomUUID(), name: "Transporte", type: "gasto" }
+        { id: crypto.randomUUID(), name: "Transporte", type: "gasto" },
+        { id: crypto.randomUUID(), name: "Belleza", type: "gasto" },
+        { id: crypto.randomUUID(), name: "Varios", type: "gasto" }
       ],
       places: [
         { id: crypto.randomUUID(), name: "Casa" },
-        { id: crypto.randomUUID(), name: "Mercado" }
+        { id: crypto.randomUUID(), name: "Mercado" },
+        { id: crypto.randomUUID(), name: "Oficina" }
       ]
     };
 
     let data = defaultData;
     let barChart, pieChart;
+
+    // Variables para Selecciones Rápidas
+    let selDesc = "";
+    let selCat = "";
+    let selPlace = "";
+    let isCustomDesc = false;
+    let editingTime = null; // Guarda la hora si se edita un movimiento viejo
+
+    const descGasto = ["Almuerzo", "Cena", "Pasajes", "Antojo", "Snack"];
+    const descIngreso = ["Sueldo", "Venta", "Ahorro", "Regalo"];
 
     const $ = (selector) => document.querySelector(selector);
     const $$ = (selector) => document.querySelectorAll(selector);
@@ -366,15 +408,11 @@
           const gist = await res.json();
           let parsed = JSON.parse(gist.files["finanzas_data.json"].content);
           
-          // PROTECCIÓN: Si el Gist está vacío ({}), inyectamos la data por defecto.
-          if (!parsed.categories || !parsed.movements) {
-            parsed = defaultData;
-          }
+          if (!parsed.categories || !parsed.movements) parsed = defaultData;
 
           localStorage.setItem(STORAGE_KEY, JSON.stringify(parsed));
           setStatus("☁️ Conectado");
           return parsed;
-
         } catch (e) { 
           console.error(e);
           setStatus("⚠️ Error (Credenciales)"); 
@@ -417,34 +455,78 @@
     function todayISO() { return new Date().toISOString().slice(0, 10); }
     function sum(type, filterFn = () => true) { return data.movements.filter(m => m.type === type && filterFn(m)).reduce((s, m) => s + Number(m.amount), 0); }
 
-    // --- INTERFAZ: BOTONES TIPO ---
-    function setType(type) {
-      $("#movementType").value = type;
-      $("#btnGasto").classList.toggle("active", type === "gasto");
-      $("#btnIngreso").classList.toggle("active", type === "ingreso");
-      renderSelects();
-    }
-
     // --- NAVEGACIÓN ---
     function showSection(id) {
       $$(".section").forEach(s => s.classList.remove("active"));
       $$(".tab-btn").forEach(b => b.classList.remove("active"));
       $("#" + id).classList.add("active");
-      
       const tab = document.querySelector(`[data-section="${id}"]`);
       if(tab) tab.classList.add("active");
-
       if (id === "estadisticas") setTimeout(renderCharts, 50);
     }
     $$(".tab-btn").forEach(b => b.addEventListener("click", () => showSection(b.dataset.section)));
 
-    // --- RENDERIZADO ---
-    function renderSelects() {
-      const type = $("#movementType").value;
-      $("#movementCategory").innerHTML = data.categories.filter(c => c.type === type).map(c => `<option value="${c.id}">${c.name}</option>`).join("") || `<option value="">Sin categorías</option>`;
-      $("#movementPlace").innerHTML = data.places.map(p => `<option value="${p.id}">${p.name}</option>`).join("") || `<option value="">Sin lugares</option>`;
+    // --- INTERFAZ: BOTONES RÁPIDOS (CHIPS) ---
+    function setType(type) {
+      $("#movementType").value = type;
+      $("#btnGasto").classList.toggle("active", type === "gasto");
+      $("#btnIngreso").classList.toggle("active", type === "ingreso");
+      
+      // Resetea selecciones
+      selDesc = ""; isCustomDesc = false; $("#customDesc").style.display = "none";
+      selCat = ""; selPlace = "";
+      renderQuickSelects();
     }
 
+    function renderQuickSelects() {
+      const type = $("#movementType").value;
+      
+      // 1. Descripciones (Hasta 5 + 1 Botón custom)
+      const listD = type === 'gasto' ? descGasto : descIngreso;
+      let htmlD = listD.slice(0, 5).map(d => `<div class="chip ${selDesc===d && !isCustomDesc ? 'active':''}" onclick="chooseDesc('${d}')">${d}</div>`).join('');
+      htmlD += `<div class="chip chip-add ${isCustomDesc ? 'active':''}" onclick="chooseCustomDesc()">+ Escribir</div>`;
+      $("#descChips").innerHTML = htmlD;
+
+      // 2. Categorías (Hasta 5 + 1 Añadir)
+      const listC = data.categories.filter(c => c.type === type).slice(0, 5);
+      if(!selCat && listC.length > 0) selCat = listC[0].id; // Auto-selecciona el primero si no hay nada
+      let htmlC = listC.map(c => `<div class="chip ${selCat===c.id ? 'active':''}" onclick="chooseCat('${c.id}')">${c.name}</div>`).join('');
+      htmlC += `<div class="chip chip-add" onclick="addNewCat()">+ Añadir</div>`;
+      $("#catChips").innerHTML = htmlC;
+
+      // 3. Lugares (Hasta 5 + 1 Añadir)
+      const listP = data.places.slice(0, 5);
+      if(!selPlace && listP.length > 0) selPlace = listP[0].id;
+      let htmlP = listP.map(p => `<div class="chip ${selPlace===p.id ? 'active':''}" onclick="choosePlace('${p.id}')">${p.name}</div>`).join('');
+      htmlP += `<div class="chip chip-add" onclick="addNewPlace()">+ Añadir</div>`;
+      $("#placeChips").innerHTML = htmlP;
+    }
+
+    // Funciones Onclick de los Chips
+    function chooseDesc(val) { selDesc = val; isCustomDesc = false; $("#customDesc").style.display = "none"; renderQuickSelects(); }
+    function chooseCustomDesc() { isCustomDesc = true; selDesc = ""; $("#customDesc").style.display = "block"; $("#customDesc").focus(); renderQuickSelects(); }
+    
+    function chooseCat(id) { selCat = id; renderQuickSelects(); }
+    function addNewCat() {
+      const name = prompt("Nombre de nueva categoría:");
+      if(name) {
+        const id = crypto.randomUUID();
+        data.categories.push({id, name, type: $("#movementType").value});
+        selCat = id; renderQuickSelects(); saveData(); renderLists();
+      }
+    }
+
+    function choosePlace(id) { selPlace = id; renderQuickSelects(); }
+    function addNewPlace() {
+      const name = prompt("Nombre del nuevo lugar:");
+      if(name) {
+        const id = crypto.randomUUID();
+        data.places.push({id, name});
+        selPlace = id; renderQuickSelects(); saveData(); renderLists();
+      }
+    }
+
+    // --- RENDERIZADO GENERAL ---
     function renderDashboard() {
       const i = sum("ingreso"), g = sum("gasto");
       $("#totalIngresos").textContent = money(i); $("#totalGastos").textContent = money(g);
@@ -455,13 +537,17 @@
 
     function renderMovements() {
       const t = $("#filterType").value, p = $("#filterPeriod").value;
-      const arr = data.movements.filter(m => (t === "todos" || m.type === t) && (p === "todos" || (p === "dia" && m.date === todayISO()))).sort((a,b) => b.date.localeCompare(a.date));
+      const arr = data.movements.filter(m => (t === "todos" || m.type === t) && (p === "todos" || (p === "dia" && m.date === todayISO()))).sort((a,b) => {
+        // Ordena por fecha primero, luego por hora si existe
+        if(b.date === a.date) return (b.time||"").localeCompare(a.time||"");
+        return b.date.localeCompare(a.date);
+      });
       
       $("#movementsTable").innerHTML = arr.map(m => `
         <tr>
-          <td style="white-space:nowrap; font-size:12px;">${m.date.slice(5)}</td>
+          <td style="white-space:nowrap; font-size:12px;">${m.date.slice(5)}<br><span style="color:#aaa; font-size:10px">${m.time || ''}</span></td>
           <td><span class="pill ${m.type==='ingreso'?'inc':'exp'}">${m.type.charAt(0)}</span></td>
-          <td><b>${m.description}</b><br><small style="color:#aaa">${data.categories.find(c=>c.id===m.categoryId)?.name||''}</small></td>
+          <td><b>${m.description}</b><br><small style="color:#aaa">${data.categories.find(c=>c.id===m.categoryId)?.name||''} • ${data.places.find(p=>p.id===m.placeId)?.name||''}</small></td>
           <td style="font-weight:bold">${money(m.amount)}</td>
           <td>
             <div class="action-btns">
@@ -506,32 +592,77 @@
 
     function renderAll(skip = false) {
       if(!skip) saveData();
-      renderSelects(); renderDashboard(); renderMovements(); renderLists();
+      renderQuickSelects(); renderDashboard(); renderMovements(); renderLists();
       if($("#estadisticas").classList.contains("active")) renderCharts();
     }
 
-    // --- ACCIONES ---
+    // --- ACCIONES FORMULARIO ---
     $("#movementForm").addEventListener("submit", (e) => {
       e.preventDefault();
+      
+      const descFinal = isCustomDesc ? $("#customDesc").value.trim() : selDesc;
+      if(!descFinal) return alert("Selecciona o escribe el motivo (¿Por qué fue?).");
+      if(!selCat) return alert("Selecciona una Categoría.");
+      if(!selPlace) return alert("Selecciona un Lugar.");
+
+      // Generar hora exacta actual
+      const now = new Date();
+      const timeString = now.toLocaleTimeString('es-PE', {hour: '2-digit', minute:'2-digit'});
+
       const m = {
-        id: $("#movementId").value || crypto.randomUUID(), type: $("#movementType").value,
-        amount: Number($("#movementAmount").value), date: $("#movementDate").value, description: $("#movementDescription").value,
-        categoryId: $("#movementCategory").value, placeId: $("#movementPlace").value
+        id: $("#movementId").value || crypto.randomUUID(), 
+        type: $("#movementType").value,
+        amount: Number($("#movementAmount").value), 
+        date: $("#movementDate").value, 
+        time: editingTime || timeString, // Mantiene la original si es edit, sino crea nueva
+        description: descFinal,
+        categoryId: selCat, 
+        placeId: selPlace
       };
-      if(!m.categoryId || !m.placeId) return alert("Crea una categoría/lugar primero.");
+      
       data.movements = data.movements.some(x=>x.id===m.id) ? data.movements.map(x=>x.id===m.id?m:x) : [m, ...data.movements];
       resetForm(); renderAll(); showSection("historial");
     });
 
-    function resetForm() { $("#movementForm").reset(); $("#movementId").value=""; $("#movementDate").value=todayISO(); $("#cancelEditBtn").style.display="none"; $("#formTitle").textContent="Registrar movimiento"; setType('gasto'); }
-    function editMov(id) { const m = data.movements.find(x=>x.id===id); if(!m)return; setType(m.type); $("#movementId").value=m.id; $("#movementAmount").value=m.amount; $("#movementDescription").value=m.description; $("#movementDate").value=m.date; setTimeout(()=> { $("#movementCategory").value=m.categoryId; $("#movementPlace").value=m.placeId; }, 50); $("#formTitle").textContent="Editar movimiento"; $("#cancelEditBtn").style.display="block"; showSection("nuevo"); window.scrollTo(0,0); }
-    function delMov(id) { if(confirm("¿Borrar?")){ data.movements = data.movements.filter(x=>x.id!==id); renderAll(); } }
+    function resetForm() { 
+      $("#movementForm").reset(); 
+      $("#movementId").value=""; 
+      $("#movementDate").value=todayISO(); 
+      $("#cancelEditBtn").style.display="none"; 
+      $("#formTitle").textContent="Registrar movimiento"; 
+      editingTime = null;
+      setType('gasto'); 
+    }
+
+    function editMov(id) { 
+      const m = data.movements.find(x=>x.id===id); if(!m)return; 
+      setType(m.type); 
+      $("#movementId").value=m.id; 
+      $("#movementAmount").value=m.amount; 
+      
+      // Reconocer descripción
+      const listD = m.type === 'gasto' ? descGasto : descIngreso;
+      if(listD.includes(m.description)){ selDesc = m.description; isCustomDesc = false; } 
+      else { isCustomDesc = true; $("#customDesc").value = m.description; $("#customDesc").style.display = "block"; }
+      
+      selCat = m.categoryId;
+      selPlace = m.placeId;
+      editingTime = m.time || null;
+      $("#movementDate").value=m.date; 
+
+      $("#formTitle").textContent="Editar movimiento"; 
+      $("#cancelEditBtn").style.display="block"; 
+      showSection("nuevo"); window.scrollTo(0,0); 
+      renderQuickSelects();
+    }
+    
+    function delMov(id) { if(confirm("¿Borrar movimiento?")){ data.movements = data.movements.filter(x=>x.id!==id); renderAll(); } }
 
     $("#categoryForm").addEventListener("submit", (e) => { e.preventDefault(); data.categories.push({ id: crypto.randomUUID(), name: $("#categoryName").value, type: $("#categoryType").value }); $("#categoryForm").reset(); renderAll(); });
-    function delCat(id) { if(data.movements.some(m=>m.categoryId===id)) return alert("En uso."); if(confirm("¿Borrar?")){ data.categories = data.categories.filter(x=>x.id!==id); renderAll(); } }
+    function delCat(id) { if(data.movements.some(m=>m.categoryId===id)) return alert("Esta categoría está en uso."); if(confirm("¿Borrar categoría?")){ data.categories = data.categories.filter(x=>x.id!==id); renderAll(); } }
 
     $("#placeForm").addEventListener("submit", (e) => { e.preventDefault(); data.places.push({ id: crypto.randomUUID(), name: $("#placeName").value }); $("#placeForm").reset(); renderAll(); });
-    function delPlace(id) { if(data.movements.some(m=>m.placeId===id)) return alert("En uso."); if(confirm("¿Borrar?")){ data.places = data.places.filter(x=>x.id!==id); renderAll(); } }
+    function delPlace(id) { if(data.movements.some(m=>m.placeId===id)) return alert("Este lugar está en uso."); if(confirm("¿Borrar lugar?")){ data.places = data.places.filter(x=>x.id!==id); renderAll(); } }
 
     $("#filterType").addEventListener("change", renderMovements);
     $("#filterPeriod").addEventListener("change", renderMovements);
